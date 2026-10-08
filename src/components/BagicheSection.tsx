@@ -1,5 +1,5 @@
 'react';
-import { BAGICHE_DATA, Bagicha } from '@/data/udyanData';
+import { BAGICHE_DATA, Bagicha } from '../data/udyanData';
 import { Youtube, ArrowRight, Flower2 } from 'lucide-react';
 
 export default function BagicheSection() {
