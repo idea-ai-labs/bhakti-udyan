@@ -1,5 +1,5 @@
 'react';
-import { JOURNEY_STEPS } from '@/data/udyanData';
+import { JOURNEY_STEPS } from '../data/udyanData';
 import { Sparkles } from 'lucide-react';
 
 export default function JourneySection() {
