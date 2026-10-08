@@ -1,5 +1,5 @@
 'react';
-import { GARDEN_PATHS } from '@/data/udyanData';
+import { GARDEN_PATHS } from '../data/udyanData';
 import { Sparkles, ArrowUpRight } from 'lucide-react';
 
 export default function SacredGardenNav() {
