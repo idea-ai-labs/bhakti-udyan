@@ -1,5 +1,5 @@
 'react';
-import { PHILOSOPHY_DATA } from '@/data/udyanData';
+import { PHILOSOPHY_DATA } from '../data/udyanData';
 import { Droplet, Flower2, Sparkles, ArrowRight } from 'lucide-react';
 
 export default function Philosophy() {
