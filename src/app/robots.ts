@@ -1,11 +1,11 @@
 import { MetadataRoute } from 'next';
 
-export default function robots(): MetadataRoute.robots {
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://bhaktiudyan.com/sitemap.ts',
+    sitemap: 'https://bhaktiudyan.com/sitemap.xml',
   };
 }
