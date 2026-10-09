@@ -4,6 +4,8 @@ import { Sprout, Droplets, Flower2 } from 'lucide-react';
 import { PHILOSOPHY_DATA } from '../data/udyanData';
 
 export default function Philosophy() {
+  const { seed, water, flower, evolution } = PHILOSOPHY_DATA;
+
   return (
     <section className="py-24 px-4 sm:px-6 relative z-10 border-t border-slate-800/60 bg-slate-950/40 backdrop-blur-md">
       <div className="max-w-6xl mx-auto">
@@ -29,10 +31,10 @@ export default function Philosophy() {
             <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform duration-300">
               <Sprout className="w-8 h-8" />
             </div>
-            <span className="text-xs uppercase tracking-wider text-amber-400 font-semibold">The Seed / Beej</span>
-            <h3 className="text-2xl font-bold text-white mt-1 mb-3 font-serif">भक्ति (Bhakti)</h3>
+            <span className="text-xs uppercase tracking-wider text-amber-400 font-semibold">{seed.meaning}</span>
+            <h3 className="text-2xl font-bold text-white mt-1 mb-3 font-serif">{seed.term} ({seed.devanagari})</h3>
             <p className="text-gray-300 text-sm leading-relaxed">
-              {PHILOSOPHY_DATA.bhakti}
+              {seed.description}
             </p>
           </div>
 
@@ -41,10 +43,10 @@ export default function Philosophy() {
             <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform duration-300">
               <Droplets className="w-8 h-8" />
             </div>
-            <span className="text-xs uppercase tracking-wider text-indigo-400 font-semibold">The Water / Jal</span>
-            <h3 className="text-2xl font-bold text-white mt-1 mb-3 font-serif">अर्थ (Arth)</h3>
+            <span className="text-xs uppercase tracking-wider text-indigo-400 font-semibold">{water.meaning}</span>
+            <h3 className="text-2xl font-bold text-white mt-1 mb-3 font-serif">{water.term} ({water.devanagari})</h3>
             <p className="text-gray-300 text-sm leading-relaxed">
-              {PHILOSOPHY_DATA.arth}
+              {water.description}
             </p>
           </div>
 
@@ -53,10 +55,10 @@ export default function Philosophy() {
             <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform duration-300">
               <Flower2 className="w-8 h-8" />
             </div>
-            <span className="text-xs uppercase tracking-wider text-purple-400 font-semibold">The Flower / Pushp</span>
-            <h3 className="text-2xl font-bold text-white mt-1 mb-3 font-serif">अनुभूति (Anubhuti)</h3>
+            <span className="text-xs uppercase tracking-wider text-purple-400 font-semibold">{flower.meaning}</span>
+            <h3 className="text-2xl font-bold text-white mt-1 mb-3 font-serif">{flower.term} ({flower.devanagari})</h3>
             <p className="text-gray-300 text-sm leading-relaxed">
-              {PHILOSOPHY_DATA.anubhuti}
+              {flower.description}
             </p>
           </div>
         </div>
@@ -64,7 +66,7 @@ export default function Philosophy() {
         {/* Journey Ribbon */}
         <div className="mt-16 text-center bg-slate-900/40 border border-slate-800/80 rounded-full py-4 px-6 max-w-2xl mx-auto backdrop-blur-sm">
           <p className="text-sm font-medium text-gray-300 tracking-wide">
-            <span className="text-amber-300">Understand</span> → <span className="text-indigo-300">Feel</span> → <span className="text-purple-300">Remember</span> → <span className="text-emerald-300">Live</span>
+            {evolution}
           </p>
         </div>
       </div>
