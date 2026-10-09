@@ -1,8 +1,9 @@
+'span';
 'use client';
 
 import { useState } from 'react';
 import { BAGICHE_DATA, Bagicha } from '../data/udyanData';
-import { Flower, Compass, Youtube, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Youtube, ChevronRight } from 'lucide-react';
 
 export default function BagicheSection() {
   const [selectedBagicha, setSelectedBagicha] = useState<Bagicha>(BAGICHE_DATA[0]);
@@ -92,7 +93,7 @@ export default function BagicheSection() {
                 Memory Anchors (Landmarks in the Garden)
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {selectedBagicha.anchors.map((anchor, idx) => (
+                {selectedBagicha.memoryAnchors.map((anchor: string, idx: number) => (
                   <div key={idx} className="flex items-start gap-3 bg-slate-950/50 border border-slate-800/80 rounded-xl p-3.5">
                     <div className="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
                       {idx + 1}
