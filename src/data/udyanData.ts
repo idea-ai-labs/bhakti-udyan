@@ -1,224 +1,175 @@
 export interface Bagicha {
   id: number;
   title: string;
-  devanagariTitle: string;
   chaupaiRange: string;
-  theme: string;
   description: string;
   memoryAnchors: string[];
   youtubeUrl?: string;
-  status: 'active' | 'growing' | 'upcoming';
 }
 
-export interface GardenPath {
-  id: string;
-  title: string;
-  devanagariTitle: string;
-  subtitle: string;
-  description: string;
-  badge: string;
-  status: 'active' | 'growing' | 'upcoming';
-}
+export const BAGICHE_DATA: Bagicha[] = [
+  {
+    id: 1,
+    title: "Bagicha 1:Invocation & Guru Vandana",
+    chaupaiRange: "Chaupais 1-5",
+    description: "Setting the foundation with guru remembrance and opening dohas.",
+    memoryAnchors: ["Guru Paduka", "Divine Mirror", "Lotus Seat"],
+    youtubeUrl: "https://www.youtube.com/watch?v=9mnblgMuUrQ" // Set 1
+  },
+  {
+    id: 2,
+    title: "Bagicha 2: Hanuman Ji's Form & Strength",
+    chaupaiRange: "Chaupais 6-10",
+    description: "Contemplating the heroic and majestic divine form.",
+    memoryAnchors: ["Golden Mountain", "Vajra Mace", "Radiant Aura"],
+    youtubeUrl: "https://youtu.be/cf_gq7wUJxI" // Set 2 (Clean URL without tracking parameters)
+  },
+  {
+    id: 3,
+    title: "Bagicha 3: Wisdom & Devotion",
+    chaupaiRange: "Chaupais 11-15",
+    description: "Exploring the union of boundless knowledge and pure bhakti.",
+    memoryAnchors: ["Ocean of Wisdom", "Sacred Flame", "Open Heart"],
+    youtubeUrl: "https://youtu.be/yYaml2SeZMQ" // Set 3
+  },
+  {
+    id: 4,
+    title: "Bagicha 4: Service & Rama's Mission",
+    chaupaiRange: "Chaupais 16-20",
+    description: "The embodiment of perfect selfless service and dedication.",
+    memoryAnchors: ["Bridge of Devotion", "Chariot of Duty", "Bow and Arrow"],
+    youtubeUrl: "https://youtu.be/D8mLsNk5_Mc" // Set 4
+  },
+  {
+    id: 5,
+    title: "Bagicha 5: Courage & Overcoming Obstacles",
+    chaupaiRange: "Chaupais 21-25",
+    description: "Dispelling fear and dissolving all worldly challenges.",
+    memoryAnchors: ["Shield of Grace", "Roaring Lion", "Cloud of Protection"],
+    youtubeUrl: "https://youtu.be/z_QcrT-QuLo" // Set 5
+  },
+  {
+    id: 6,
+    title: "Bagicha 6: Divine Protection & Refuge",
+    chaupaiRange: "Chaupais 26-30",
+    description: "Finding ultimate safety and solace in divine refuge.",
+    memoryAnchors: ["Sanctuary Gate", "Abhaya Mudra", "Everlasting Light"],
+    youtubeUrl: "https://youtu.be/p58nfmIcQlg" // Set 6
+  },
+  {
+    id: 7,
+    title: "Bagicha 7: Supreme Grace",
+    chaupaiRange: "Chaupais 31-35",
+    description: "Receiving the boundless grace and blessings of the protector.",
+    memoryAnchors: ["Nectar Cup", "Flowing River", "Open Sky"],
+    youtubeUrl: "" // Pending
+  },
+  {
+    id: 8,
+    title: "Bagicha 8: Final Surrender & Fruit of Devotion",
+    chaupaiRange: "Chaupais 36-40",
+    description: "The ultimate culmination of the Hanuman Chalisa journey.",
+    memoryAnchors: ["Blooming Lotus", "Crown of Peace", "Infinite Horizon"],
+    youtubeUrl: "" // Pending
+  }
+];
 
 export const PHILOSOPHY_DATA = {
   seed: {
     term: "Bhakti",
     devanagari: "भक्ति",
     meaning: "The Seed",
-    description: "Devotion is the foundational seed planted within the heart, calling forth our inner reverence and connection."
+    description: "Devotion is planted as a seed in the heart, holding the blueprint of complete spiritual awakening."
   },
   water: {
     term: "Arth",
     devanagari: "अर्थ",
     meaning: "The Water",
-    description: "Deep understanding, meaning, and contextual wisdom nourish the seed, transforming blind repetition into conscious insight."
+    description: "Deep understanding and philosophical meaning nourish the seed, allowing clarity to take root."
   },
   flower: {
     term: "Anubhuti",
     devanagari: "अनुभूति",
     meaning: "The Flower",
-    description: "Direct personal experience and awakening blossom naturally when devotion meets understanding."
+    description: "Direct inner realization and meditative experience cause the flower of divine wisdom to blossom."
   },
-  evolution: "Anubhuti → Smriti (Memory) → Jeevan (Lived Transformation)"
+  evolution: "Understand → Feel → Remember → Live"
 };
 
-export const GARDEN_PATHS: GardenPath[] = [
-  {
-    id: "explore-bhakti",
-    title: "Explore Bhakti",
-    devanagariTitle: "भक्ति अन्वेषण",
-    subtitle: "Mantra, Stotra & Sacred Traditions",
-    description: "Journey through sacred hymns and foundational spiritual practices designed to center the mind and elevate consciousness.",
-    badge: "Core Garden",
-    status: "active"
-  },
-  {
-    id: "understand-arth",
-    title: "Understand Arth",
-    devanagariTitle: "अर्थ बोध",
-    subtitle: "Meaning, Symbolism & Interpretation",
-    description: "Unveil the hidden layers, Sanskrit etymology, and philosophical depth behind every line of sacred devotional texts.",
-    badge: "Wisdom Path",
-    status: "active"
-  },
-  {
-    id: "experience-anubhuti",
-    title: "Experience Anubhuti",
-    devanagariTitle: "दिव्य अनुभूति",
-    subtitle: "Contemplative & Musical Immersion",
-    description: "Engage with immersive audio-visual experiences, meditative soundscapes, and guided contemplation designed for direct realization.",
-    badge: "Immersive",
-    status: "growing"
-  },
-  {
-    id: "katha",
-    title: "Katha",
-    devanagariTitle: "पावन कथा",
-    subtitle: "Stories That Anchor Memory",
-    description: "Timeless mythological and historical narratives that embed spiritual principles deeply into human memory and daily reflection.",
-    badge: "Story Garden",
-    status: "growing"
-  },
-  {
-    id: "learn-remember",
-    title: "Learn & Remember",
-    devanagariTitle: "स्मृति विज्ञान",
-    subtitle: "Memory Techniques & Structured Learning",
-    description: "Master complex scriptures effortlessly through our signature 8 Bagiche mnemonic framework and visual association maps.",
-    badge: "Masterclass",
-    status: "active"
-  },
-  {
-    id: "bal-bhakti",
-    title: "Bal Bhakti",
-    devanagariTitle: "बाल भक्ति",
-    subtitle: "Devotional Learning for Families & Children",
-    description: "Delightful stories, simple chants, and interactive memory games crafted to pass down cultural wisdom to the next generation.",
-    badge: "Family Garden",
-    status: "upcoming"
-  }
-];
-
-export const BAGICHE_DATA: Bagicha[] = [
+export const GARDEN_PATHS = [
   {
     id: 1,
-    title: "Bagicha 1: Gyan Aur Bal",
-    devanagariTitle: "ज्ञान और बल",
-    chaupaiRange: "Chaupai 1–5",
-    theme: "Invocation & Salutation",
-    description: "Awakening the inner reservoirs of pure consciousness, supreme intellect, and divine strength at the feet of the Guru and Lord Hanuman.",
-    memoryAnchors: ["Gyan Sagar", "Pawan Putra", "Mahabir", "Kanchan Kundal", "Vajra Vesha"],
-    youtubeUrl: "https://www.youtube.com/@BhaktiUdyan",
-    status: "active"
+    title: "Explore Bhakti",
+    subtitle: "The Foundation",
+    badge: "Core",
+    description: "Discover the seed of devotion and establish a daily contemplative practice."
   },
   {
     id: 2,
-    title: "Bagicha 2: Divya Swaroop Aur Leela",
-    devanagariTitle: "दिव्य स्वरूप और लीला",
-    chaupaiRange: "Chaupai 6–10",
-    theme: "Form & Attributes",
-    description: "Contemplating the radiant form, unmatched wisdom, virtuous character, and divine grace of Anjaniputra.",
-    memoryAnchors: ["Vidyavan", "Prabhu Charitra", "Ram Priya", "Sookshma Roop", "Bhim Roop"],
-    youtubeUrl: "https://www.youtube.com/@BhaktiUdyan",
-    status: "active"
+    title: "Understand Arth",
+    subtitle: "Deep Meanings",
+    badge: "Wisdom",
+    description: "Unpack the literal and spiritual layers behind sacred verses."
   },
   {
     id: 3,
-    title: "Bagicha 3: Rama Seva Aur Parakram",
-    devanagariTitle: "राम सेवा और पराक्रम",
-    chaupaiRange: "Chaupai 11–15",
-    theme: "Heroic Devotion & Strength",
-    description: "Witnessing the supreme acts of devotion, the revival of Lakshmana, and the boundless courage that bridged oceans.",
-    memoryAnchors: ["Laye Sanjeevan", "Shri Rati", "Sahas Badan", "Asht Siddhi", "Ram Rasayana"],
-    youtubeUrl: "https://www.youtube.com/@BhaktiUdyan",
-    status: "active"
+    title: "Experience Anubhuti",
+    subtitle: "Inner Realization",
+    badge: "Meditation",
+    description: "Move beyond intellectual study into direct experiential peace."
   },
   {
     id: 4,
-    title: "Bagicha 4: Bhakti Aur Bhajan",
-    devanagariTitle: "भक्ति और भजन",
-    chaupaiRange: "Chaupai 16–20",
-    theme: "Devotional Absorption",
-    description: "Singing the praises of Shri Rama while resting in the eternal assurance of protection and grace.",
-    memoryAnchors: ["Tumhare Bhajan", "Duhar Sune", "Sab Sukh Lahain", "Tum Rakshak", "Agya Harin"],
-    youtubeUrl: "https://www.youtube.com/@BhaktiUdyan",
-    status: "active"
+    title: "Katha",
+    subtitle: "Sacred Narratives",
+    badge: "Stories",
+    description: "Immerse yourself in timeless stories that illuminate human and divine virtues."
   },
   {
     id: 5,
-    title: "Bagicha 5: Tej Aur Loka Prabhav",
-    devanagariTitle: "तेज और लोक प्रभाव",
-    chaupaiRange: "Chaupai 21–25",
-    theme: "Cosmic Radiance",
-    description: "The three worlds tremble at his valor, and darkness flees before his luminous presence.",
-    memoryAnchors: ["Bhoot Pishach", "Nasai Rog", "Sankat Se", "Mahavir Tum", "Dhyan Jo Lavai"],
-    youtubeUrl: "https://www.youtube.com/@BhaktiUdyan",
-    status: "active"
+    title: "Learn & Remember",
+    subtitle: "The Memory System",
+    badge: "Memory",
+    description: "Use spatial anchors and imagery to effortlessly retain sacred texts."
   },
   {
     id: 6,
-    title: "Bagicha 6: Deva Vandana Aur Sukh",
-    devanagariTitle: "देव वंदना और सुख",
-    chaupaiRange: "Chaupai 26–30",
-    theme: "Celestial Reverence",
-    description: "Honored by sages, gods, and saints as the supreme protector of righteous souls.",
-    memoryAnchors: ["Sab Par Ram", "Teen Lok", "Prabhu Mudrika", "Durgam Kaj", "Ram Dware"],
-    youtubeUrl: "https://www.youtube.com/@BhaktiUdyan",
-    status: "active"
-  },
-  {
-    id: 7,
-    title: "Bagicha 7: Sharanagati Aur Samarpana",
-    devanagariTitle: "शरणागति और समर्पण",
-    chaupaiRange: "Chaupai 31–35",
-    theme: "Complete Surrender",
-    description: "Finding ultimate refuge, boundless joy, and freedom from rebirth in the grace of Anjanisuta.",
-    memoryAnchors: ["Hot Na Agya", "Sub Sukh", "Tumharo Mantra", "Apan Tej", "Teeno Lok"],
-    youtubeUrl: "https://www.youtube.com/@BhaktiUdyan",
-    status: "active"
-  },
-  {
-    id: 8,
-    title: "Bagicha 8: Siddhi Aur Purnata",
-    devanagariTitle: "सिद्धि और पूर्णता",
-    chaupaiRange: "Chaupai 36–40",
-    theme: "Fulfillment & Benediction",
-    description: "The concluding benediction and prayer for peace in the heart and home.",
-    memoryAnchors: ["Sankat Har", "Mangal Murti", "Jai Jai Jai", "Kripa Karahu", "Pawan Tanay"],
-    youtubeUrl: "https://www.youtube.com/@BhaktiUdyan",
-    status: "active"
+    title: "Bal Bhakti",
+    subtitle: "For Young Minds",
+    badge: "Family",
+    description: "Engaging, accessible spiritual learning designed for children and families."
   }
 ];
 
 export const JOURNEY_STEPS = [
   {
     step: "01",
-    title: "Discover Bhakti Udyan",
-    description: "Step into the sacred cosmic garden where spiritual tradition meets deep contemplation."
+    title: "Discover",
+    description: "Explore the core pillars of Bhakti, Arth, and Anubhuti."
   },
   {
     step: "02",
-    title: "Understand the Philosophy",
-    description: "Realize how Bhakti (Seed) and Arth (Water) blossom into Anubhuti (Flower)."
+    title: "Explore",
+    description: "Navigate through specialized sanctuary paths within the Udyan."
   },
   {
     step: "03",
-    title: "Explore Hanuman Chalisa",
-    description: "Experience our flagship mnemonic journey designed for effortless memorization."
+    title: "Enter",
+    description: "Step into the Hanuman Chalisa learning sanctuary."
   },
   {
     step: "04",
-    title: "Enter the 8 Bagiche",
-    description: "Navigate through 8 luminous garden nodes connecting 40 sacred chaupais."
+    title: "Walk",
+    description: "Journey progressively through the 8 Bagiche."
   },
   {
     step: "05",
-    title: "Download the Memory Map",
-    description: "Get your visual anchor map (स्थान → चित्र → कथा → स्मृति) for daily practice."
+    title: "Remember",
+    description: "Anchor verses in your mind using vivid memory landmarks."
   },
   {
     step: "06",
-    title: "Watch & Practice on YouTube",
-    description: "Immerse yourself in our cinematic video teachings and community chanting sessions."
+    title: "Practice",
+    description: "Deepen your retention with guided YouTube recitals and videos."
   }
 ];
