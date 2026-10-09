@@ -1,7 +1,6 @@
 'use client';
 
 import { JOURNEY_STEPS } from '../data/udyanData';
-import { Sparkles } from 'lucide-react';
 
 export default function JourneySection() {
   return (
@@ -20,21 +19,21 @@ export default function JourneySection() {
         </div>
 
         <div className="space-y-6">
-          {JOURNEY_STEPS.map((step, idx) => (
+          {JOURNEY_STEPS.map((stepItem, idx) => (
             <div
-              key={step.number}
+              key={stepItem.step}
               className="group relative bg-slate-900/60 border border-slate-800 hover:border-amber-500/40 rounded-2xl p-6 sm:p-8 transition-all duration-300 backdrop-blur-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
             >
               <div className="flex items-center gap-5">
                 <div className="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center font-serif font-bold text-xl text-amber-400 group-hover:bg-amber-500/10 group-hover:border-amber-500/30 transition-colors shrink-0">
-                  {step.number}
+                  {stepItem.step}
                 </div>
                 <div>
                   <h3 className="text-xl font-bold font-serif text-white mb-1 group-hover:text-amber-300 transition-colors">
-                    {step.title}
+                    {stepItem.title}
                   </h3>
                   <p className="text-gray-400 text-sm leading-relaxed">
-                    {step.description}
+                    {stepItem.description}
                   </p>
                 </div>
               </div>
