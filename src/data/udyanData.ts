@@ -12,6 +12,7 @@ export interface Bagicha {
   theme?: string;
   chaupaiRange: string;
   bhav: string;
+  description: string; // Restored to satisfy BagicheSection & BagicheSection1
   memoryAnchors: string[];
   anchors: MemoryAnchor[];
   memoryJourney: string[];
@@ -27,7 +28,8 @@ export const BAGICHE_DATA: Bagicha[] = [
     devanagariTitle: "बगीचा 1: ज्ञान और बल",
     theme: "from-amber-500/20 to-orange-500/20",
     chaupaiRange: "1–5",
-    bhav: "हनुमान जी का ज्ञान, बल, बुद्धिमत्ता और दिव्य स्वरूप。",
+    bhav: "हनुमान जी का ज्ञान, बल, बुद्धिमत्ता और दिव्य स्वरूप।",
+    description: "Setting the foundation with guru remembrance, divine wisdom, and core strength.",
     memoryAnchors: [
       "Chaupai 1 — Gyan Sagar Tihun Lok",
       "Chaupai 2 — Ramdoot Pawan Putra",
@@ -53,7 +55,8 @@ export const BAGICHE_DATA: Bagicha[] = [
     devanagariTitle: "बगीचा 2: दिव्य स्वरूप और लीला",
     theme: "from-indigo-500/20 to-blue-500/20",
     chaupaiRange: "6–10",
-    bhav: "हनुमान जी का दिव्य स्वरूप, विद्वत्ता, रामकथा के प्रति प्रेम और अद्भुत शक्तियाँ。",
+    bhav: "हनुमान जी का दिव्य स्वरूप, विद्वत्ता, रामकथा के प्रति प्रेम और अद्भुत शक्तियाँ।",
+    description: "Contemplating the heroic and majestic divine form, scholarship, and wondrous acts.",
     memoryAnchors: [
       "Chaupai 6 — Shankar Suvan",
       "Chaupai 7 — Vidyavaan Chatur",
@@ -79,7 +82,8 @@ export const BAGICHE_DATA: Bagicha[] = [
     devanagariTitle: "बगीचा 3: राम भक्ति और यश",
     theme: "from-purple-500/20 to-indigo-500/20",
     chaupaiRange: "11–15",
-    bhav: "राम जी के प्रति हनुमान जी की सेवा, भक्ति और तीनों लोकों में उनकी महिमा。",
+    bhav: "राम जी के प्रति हनुमान जी की सेवा, भक्ति और तीनों लोकों में उनकी महिमा।",
+    description: "Exploring the union of boundless devotion, selfless service, and universal glory.",
     memoryAnchors: [
       "Chaupai 11 — Laye Sanjivan",
       "Chaupai 12 — Raghupati Badai",
@@ -105,7 +109,8 @@ export const BAGICHE_DATA: Bagicha[] = [
     devanagariTitle: "बगीचा 4: सेवा और सामर्थ्य",
     theme: "from-emerald-500/20 to-teal-500/20",
     chaupaiRange: "16–20",
-    bhav: "हनुमान जी की सेवा, मार्गदर्शन, अद्भुत सामर्थ्य और कठिन कार्यों को पूरा करने की शक्ति。",
+    bhav: "हनुमान जी की सेवा, मार्गदर्शन, अद्भुत सामर्थ्य और कठिन कार्यों को पूरा करने की शक्ति।",
+    description: "The embodiment of perfect service, guidance, and extraordinary capability.",
     memoryAnchors: [
       "Chaupai 16 — Tum Upkar",
       "Chaupai 17 — Tumharo Mantra",
@@ -131,7 +136,8 @@ export const BAGICHE_DATA: Bagicha[] = [
     devanagariTitle: "बगीचा 5: रक्षा और सुख",
     theme: "from-rose-500/20 to-red-500/20",
     chaupaiRange: "21–25",
-    bhav: "हनुमान जी की शरण, भक्तों को मिलने वाला सुख, उनकी रक्षा और रोगों तथा पीड़ाओं से मुक्ति की प्रार्थना。",
+    bhav: "हनुमान जी की शरण, भक्तों को मिलने वाला सुख, उनकी रक्षा और रोगों तथा पीड़ाओं से मुक्ति की प्रार्थना।",
+    description: "Finding refuge, well-being, divine protection, and relief from distress.",
     memoryAnchors: [
       "Chaupai 21 — Ram Duare",
       "Chaupai 22 — Sab Sukh Lahai",
@@ -157,7 +163,8 @@ export const BAGICHE_DATA: Bagicha[] = [
     devanagariTitle: "बगीचा 6: संकट मोचन",
     theme: "from-cyan-500/20 to-blue-500/20",
     chaupaiRange: "26–30",
-    bhav: "संकटों से मुक्ति, राम की कृपा, मनोकामनाओं की पूर्ति और संतों की रक्षा。",
+    bhav: "संकटों से मुक्ति, राम की कृपा, मनोकामनाओं की पूर्ति और संतों की रक्षा।",
+    description: "Dissolving all worldly challenges and moving toward courage and grace.",
     memoryAnchors: [
       "Chaupai 26 — Sankat Te",
       "Chaupai 27 — Sab Par Ram",
@@ -183,7 +190,8 @@ export const BAGICHE_DATA: Bagicha[] = [
     devanagariTitle: "बगीचा 7: सिद्धि और भक्ति",
     theme: "from-amber-500/20 to-yellow-500/20",
     chaupaiRange: "31–35",
-    bhav: "हनुमान जी की सिद्धियाँ, राम-भक्ति का अमृत और भक्ति के फल की महिमा。",
+    bhav: "हनुमान जी की सिद्धियाँ, राम-भक्ति का अमृत और भक्ति के फल की महिमा।",
+    description: "Receiving spiritual accomplishments, remembrance, and the nectar of bhakti.",
     memoryAnchors: [
       "Chaupai 31 — Aasht Siddhi",
       "Chaupai 32 — Ram Rasayan",
@@ -209,7 +217,8 @@ export const BAGICHE_DATA: Bagicha[] = [
     devanagariTitle: "बगीचा 8: फल और आशीर्वाद",
     theme: "from-violet-500/20 to-purple-500/20",
     chaupaiRange: "36–40",
-    bhav: "हनुमान चालीसा के पाठ का फल, कृपा, आशीर्वाद और तुलसीदास जी की भक्ति。",
+    bhav: "हनुमान चालीसा के पाठ का फल, कृपा, आशीर्वाद और तुलसीदास जी की भक्ति।",
+    description: "The ultimate culmination, fulfillment of practice, and divine blessings.",
     memoryAnchors: [
       "Chaupai 36 — Sankat Katai",
       "Chaupai 37 — Jai Jai Jai",
