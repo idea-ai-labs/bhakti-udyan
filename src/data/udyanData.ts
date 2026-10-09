@@ -7,11 +7,13 @@ export interface Bagicha {
   id: number;
   englishName: string;
   hindiName: string;
-  title: string; // Used for UI compatibility
+  title: string;
+  devanagariTitle?: string;
+  theme?: string;
   chaupaiRange: string;
   bhav: string;
-  memoryAnchors: string[]; // List of strings for component compatibility
-  anchors: MemoryAnchor[]; // Detailed anchors with numbers
+  memoryAnchors: string[];
+  anchors: MemoryAnchor[];
   memoryJourney: string[];
   youtubeUrl?: string;
 }
@@ -21,9 +23,11 @@ export const BAGICHE_DATA: Bagicha[] = [
     id: 1,
     englishName: "Gyan Aur Bal",
     hindiName: "ज्ञान और बल",
-    title: "Bagicha 1: ज्ञान और बल (Gyan Aur Bal)",
+    title: "Bagicha 1: Gyan Aur Bal",
+    devanagariTitle: "बगीचा 1: ज्ञान और बल",
+    theme: "from-amber-500/20 to-orange-500/20",
     chaupaiRange: "1–5",
-    bhav: "हनुमान जी का ज्ञान, बल, बुद्धिमत्ता और दिव्य स्वरूप।",
+    bhav: "हनुमान जी का ज्ञान, बल, बुद्धिमत्ता और दिव्य स्वरूप。",
     memoryAnchors: [
       "Chaupai 1 — Gyan Sagar Tihun Lok",
       "Chaupai 2 — Ramdoot Pawan Putra",
@@ -45,9 +49,11 @@ export const BAGICHE_DATA: Bagicha[] = [
     id: 2,
     englishName: "Divya Swaroop Aur Leela",
     hindiName: "दिव्य स्वरूप और लीला",
-    title: "Bagicha 2: दिव्य स्वरूप और लीला (Divya Swaroop Aur Leela)",
+    title: "Bagicha 2: Divya Swaroop Aur Leela",
+    devanagariTitle: "बगीचा 2: दिव्य स्वरूप और लीला",
+    theme: "from-indigo-500/20 to-blue-500/20",
     chaupaiRange: "6–10",
-    bhav: "हनुमान जी का दिव्य स्वरूप, विद्वत्ता, रामकथा के प्रति प्रेम और अद्भुत शक्तियाँ।",
+    bhav: "हनुमान जी का दिव्य स्वरूप, विद्वत्ता, रामकथा के प्रति प्रेम और अद्भुत शक्तियाँ。",
     memoryAnchors: [
       "Chaupai 6 — Shankar Suvan",
       "Chaupai 7 — Vidyavaan Chatur",
@@ -69,9 +75,11 @@ export const BAGICHE_DATA: Bagicha[] = [
     id: 3,
     englishName: "Ram Bhakti Aur Yash",
     hindiName: "राम भक्ति और यश",
-    title: "Bagicha 3: राम भक्ति और यश (Ram Bhakti Aur Yash)",
+    title: "Bagicha 3: Ram Bhakti Aur Yash",
+    devanagariTitle: "बगीचा 3: राम भक्ति और यश",
+    theme: "from-purple-500/20 to-indigo-500/20",
     chaupaiRange: "11–15",
-    bhav: "राम जी के प्रति हनुमान जी की सेवा, भक्ति और तीनों लोकों में उनकी महिमा।",
+    bhav: "राम जी के प्रति हनुमान जी की सेवा, भक्ति और तीनों लोकों में उनकी महिमा。",
     memoryAnchors: [
       "Chaupai 11 — Laye Sanjivan",
       "Chaupai 12 — Raghupati Badai",
@@ -93,9 +101,11 @@ export const BAGICHE_DATA: Bagicha[] = [
     id: 4,
     englishName: "Seva Aur Samarthya",
     hindiName: "सेवा और सामर्थ्य",
-    title: "Bagicha 4: सेवा और सामर्थ्य (Seva Aur Samarthya)",
+    title: "Bagicha 4: Seva Aur Samarthya",
+    devanagariTitle: "बगीचा 4: सेवा और सामर्थ्य",
+    theme: "from-emerald-500/20 to-teal-500/20",
     chaupaiRange: "16–20",
-    bhav: "हनुमान जी की सेवा, मार्गदर्शन, अद्भुत सामर्थ्य और कठिन कार्यों को पूरा करने की शक्ति।",
+    bhav: "हनुमान जी की सेवा, मार्गदर्शन, अद्भुत सामर्थ्य और कठिन कार्यों को पूरा करने की शक्ति。",
     memoryAnchors: [
       "Chaupai 16 — Tum Upkar",
       "Chaupai 17 — Tumharo Mantra",
@@ -117,9 +127,11 @@ export const BAGICHE_DATA: Bagicha[] = [
     id: 5,
     englishName: "Raksha Aur Sukh",
     hindiName: "रक्षा और सुख",
-    title: "Bagicha 5: रक्षा और सुख (Raksha Aur Sukh)",
+    title: "Bagicha 5: Raksha Aur Sukh",
+    devanagariTitle: "बगीचा 5: रक्षा और सुख",
+    theme: "from-rose-500/20 to-red-500/20",
     chaupaiRange: "21–25",
-    bhav: "हनुमान जी की शरण, भक्तों को मिलने वाला सुख, उनकी रक्षा और रोगों तथा पीड़ाओं से मुक्ति की प्रार्थना।",
+    bhav: "हनुमान जी की शरण, भक्तों को मिलने वाला सुख, उनकी रक्षा और रोगों तथा पीड़ाओं से मुक्ति की प्रार्थना。",
     memoryAnchors: [
       "Chaupai 21 — Ram Duare",
       "Chaupai 22 — Sab Sukh Lahai",
@@ -141,9 +153,11 @@ export const BAGICHE_DATA: Bagicha[] = [
     id: 6,
     englishName: "Sankat Mochan",
     hindiName: "संकट मोचन",
-    title: "Bagicha 6: संकट मोचन (Sankat Mochan)",
+    title: "Bagicha 6: Sankat Mochan",
+    devanagariTitle: "बगीचा 6: संकट मोचन",
+    theme: "from-cyan-500/20 to-blue-500/20",
     chaupaiRange: "26–30",
-    bhav: "संकटों से मुक्ति, राम की कृपा, मनोकामनाओं की पूर्ति और संतों की रक्षा।",
+    bhav: "संकटों से मुक्ति, राम की कृपा, मनोकामनाओं की पूर्ति और संतों की रक्षा。",
     memoryAnchors: [
       "Chaupai 26 — Sankat Te",
       "Chaupai 27 — Sab Par Ram",
@@ -165,9 +179,11 @@ export const BAGICHE_DATA: Bagicha[] = [
     id: 7,
     englishName: "Siddhi Aur Bhakti",
     hindiName: "सिद्धि और भक्ति",
-    title: "Bagicha 7: सिद्धि और भक्ति (Siddhi Aur Bhakti)",
+    title: "Bagicha 7: Siddhi Aur Bhakti",
+    devanagariTitle: "बगीचा 7: सिद्धि और भक्ति",
+    theme: "from-amber-500/20 to-yellow-500/20",
     chaupaiRange: "31–35",
-    bhav: "हनुमान जी की सिद्धियाँ, राम-भक्ति का अमृत और भक्ति के फल की महिमा।",
+    bhav: "हनुमान जी की सिद्धियाँ, राम-भक्ति का अमृत और भक्ति के फल की महिमा。",
     memoryAnchors: [
       "Chaupai 31 — Aasht Siddhi",
       "Chaupai 32 — Ram Rasayan",
@@ -189,9 +205,11 @@ export const BAGICHE_DATA: Bagicha[] = [
     id: 8,
     englishName: "Phal Aur Ashirwad",
     hindiName: "फल और आशीर्वाद",
-    title: "Bagicha 8: फल और आशीर्वाद (Phal Aur Ashirwad)",
+    title: "Bagicha 8: Phal Aur Ashirwad",
+    devanagariTitle: "बगीचा 8: फल और आशीर्वाद",
+    theme: "from-violet-500/20 to-purple-500/20",
     chaupaiRange: "36–40",
-    bhav: "हनुमान चालीसा के पाठ का फल, कृपा, आशीर्वाद और तुलसीदास जी की भक्ति।",
+    bhav: "हनुमान चालीसा के पाठ का फल, कृपा, आशीर्वाद और तुलसीदास जी की भक्ति。",
     memoryAnchors: [
       "Chaupai 36 — Sankat Katai",
       "Chaupai 37 — Jai Jai Jai",
@@ -238,43 +256,55 @@ export const GARDEN_PATHS = [
   {
     id: 1,
     title: "Explore Bhakti",
+    devanagariTitle: "भक्ति अन्वेषण",
     subtitle: "The Foundation",
     badge: "Core",
+    status: "Active",
     description: "Discover the seed of devotion and establish a daily contemplative practice."
   },
   {
     id: 2,
     title: "Understand Arth",
+    devanagariTitle: "अर्थ बोध",
     subtitle: "Deep Meanings",
     badge: "Wisdom",
+    status: "Active",
     description: "Unpack the literal and spiritual layers behind sacred verses."
   },
   {
     id: 3,
     title: "Experience Anubhuti",
+    devanagariTitle: "अनुभूति अनुभव",
     subtitle: "Inner Realization",
     badge: "Meditation",
+    status: "Active",
     description: "Move beyond intellectual study into direct experiential peace."
   },
   {
     id: 4,
     title: "Katha",
+    devanagariTitle: "कथा सरिता",
     subtitle: "Sacred Narratives",
     badge: "Stories",
+    status: "Active",
     description: "Immerse yourself in timeless stories that illuminate human and divine virtues."
   },
   {
     id: 5,
     title: "Learn & Remember",
+    devanagariTitle: "स्मृति पथ",
     subtitle: "The Memory System",
     badge: "Memory",
+    status: "Active",
     description: "Use spatial anchors and imagery to effortlessly retain sacred texts."
   },
   {
     id: 6,
     title: "Bal Bhakti",
+    devanagariTitle: "बाल भक्ति",
     subtitle: "For Young Minds",
     badge: "Family",
+    status: "Active",
     description: "Engaging, accessible spiritual learning designed for children and families."
   }
 ];
