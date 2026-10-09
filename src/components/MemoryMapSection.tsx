@@ -1,6 +1,6 @@
 'use client';
 
-import { Download, Sparkles, Map } from 'lucide-react';
+import { Download, Map } from 'lucide-react';
 
 export default function MemoryMapSection() {
   return (
@@ -24,19 +24,20 @@ export default function MemoryMapSection() {
           A visual guide to the 40 chaupais, 8 Bagiche, and Memory Anchors designed for lifelong retention and daily contemplation.
         </p>
 
-        {/* PDF Download CTA */}
+        {/* PDF Download Link */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
-            onClick={() => alert("The 8 Bagiche Memory Map PDF companion is coming soon. Stay tuned!")}
+          <a
+            href="/downloads/8-bagiche-memory-map.pdf"
+            download
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-amber-500 text-slate-950 font-semibold shadow-lg shadow-amber-500/20 hover:bg-amber-400 transition-all duration-300 transform hover:-translate-y-0.5"
           >
             <Download className="w-5 h-5" />
             Download the 8 Bagiche Memory Map
-          </button>
+          </a>
         </div>
         
         <p className="text-xs text-gray-500 mt-4">
-          PDF Companion (Placeholder ready for upcoming release)
+          Official PDF Companion · Ready for instant download
         </p>
       </div>
     </section>
