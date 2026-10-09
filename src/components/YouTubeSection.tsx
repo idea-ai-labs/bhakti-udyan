@@ -97,7 +97,7 @@ export default function YouTubeSection() {
           >
             <Youtube className="w-5 h-5 text-red-500 shrink-0" />
             <div>
-              <h4 className="text-sm font-bold text-white group-hover:text-red-300">Main Channel</h4>
+              <h4 className="text-sm font-bold text-white group-hover:text-red-300">@bhakti-udyan</h4>
               <p className="text-xs text-gray-400">Subscribe & explore more</p>
             </div>
           </a>
@@ -111,7 +111,7 @@ export default function YouTubeSection() {
           className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-red-600 text-white font-semibold shadow-lg shadow-red-600/20 hover:bg-red-500 transition-all duration-300"
         >
           <Play className="w-4 h-4 fill-current" />
-          Visit Bhakti Udyan YouTube Channel →
+          Visit @bhakti-udyan on YouTube →
         </a>
       </div>
     </section>
