@@ -27,7 +27,7 @@ export default function MemoryMapSection() {
         {/* PDF Download Link */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="/downloads/8-bagiche-memory-map.pdf"
+            href="/downloads/Bhakti_Udyan_Brochure.pdf"
             download
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-amber-500 text-slate-950 font-semibold shadow-lg shadow-amber-500/20 hover:bg-amber-400 transition-all duration-300 transform hover:-translate-y-0.5"
           >
