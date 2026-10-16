@@ -350,3 +350,11 @@ export const JOURNEY_STEPS = [
     description: "Deepen your retention with guided YouTube recitals and videos."
   }
 ];
+
+export const SITE_LINKS = {
+  youtubeChannel: "https://www.youtube.com/@bhakti-udyan",
+  youtubeSubscribe: "https://www.youtube.com/@bhakti-udyan?sub_confirmation=1",
+  youtubePlaylist: "https://www.youtube.com/playlist?list=PLFd5vlGMj8tE",
+  instagram: "https://www.instagram.com/bhaktiudyan",
+  whatsappChannel: "",
+}
