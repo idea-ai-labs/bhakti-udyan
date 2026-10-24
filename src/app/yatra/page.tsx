@@ -82,9 +82,13 @@ export default function YatraPage() {
         <header className="sticky top-0 z-20 bg-[#FFFBF0]/90 backdrop-blur border-b border-[#F5E6C8]">
           <div className="max-w-[1280px] mx-auto px-4 md:px-8 py-4 md:py-5 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-[#0B6E4F] grid place-items-center text-white font-serif">ॐ</div>
+              <a href="/" className="w-9 h-9 rounded-full bg-[#0B6E4F] grid place-items-center text-white font-serif hover:bg-[#095a3f] transition" title="Back to Bhakti Udyan main">ॐ</a>
               <div>
-                <h1 className="font-serif text-[18px] md:text-[20px] font-bold leading-none">Bhakti Udyan • Yatra</h1>
+                <div className="flex items-center gap-2">
+                  <a href="/" className="text-[11px] text-[#0B6E4F] hover:underline">Bhakti Udyan</a>
+                  <span className="text-[11px] text-[#D4AF7A]">/</span>
+                  <h1 className="font-serif text-[18px] md:text-[20px] font-bold leading-none">Yatra</h1>
+                </div>
                 <p className="text-[11px] text-[#8A7352] mt-0.5">40 Chaupais → 8 Bagiche → 40 Memory Anchors</p>
               </div>
             </div>
@@ -168,7 +172,9 @@ export default function YatraPage() {
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-3">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2 min-w-0">
-              <button onClick={()=>{setSelectedBagicha(null); setSelectedAnchor(null);}} className="text-[12px] px-2.5 py-1 rounded-full bg-white border border-[#F5E6C8] hover:border-[#D4AF7A] shrink-0">← Garden</button>
+              <a href="/" className="hidden md:inline text-[11px] px-2.5 py-1 rounded-full bg-white border border-[#F5E6C8] hover:border-[#D4AF7A]">⌂ Home</a>
+              <button onClick={()=>{setSelectedBagicha(null); setSelectedAnchor(null);}} className="text-[12px] px-2.5 py-1 rounded-full bg-white border border-[#F5E6C8] hover:border-[#D4AF7A] shrink-0 flex items-center gap-1"><span>←</span><span className="hidden md:inline">Grand Garden</span><span className="md:hidden">Garden</span></button>
+              <button onClick={()=>{setSelectedBagicha(null); setSelectedAnchor(null);}} className="md:hidden text-[12px] px-2 py-1 rounded-full bg-[#0B6E4F] text-white">Yatra Home</button>
               <span className="text-[#D4AF7A]">/</span>
               <div className="min-w-0">
                 <div className="flex items-center gap-2">
