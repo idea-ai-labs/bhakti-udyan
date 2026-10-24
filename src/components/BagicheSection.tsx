@@ -1,127 +1,80 @@
-'span';
-'use client';
 
-import { useState } from 'react';
-import { BAGICHE_DATA, Bagicha } from '../data/udyanData';
-import { Youtube, ChevronRight } from 'lucide-react';
+'use client';
+import { BAGICHE_DATA } from '../data/udyanData';
+
+const BAGICHA_IMAGES: Record<number, string> = {
+  1: '/bagicha/bu-bagicha-01-gyan-aur-bal.webp',
+  2: '/bagicha/bu-bagicha-02-divya-swaroop.webp',
+  3: '/bagicha/bu-bagicha-03-ram-bhakti.webp',
+  4: '/bagicha/bu-bagicha-04-seva-samarthya.webp',
+  5: '/bagicha/bu-bagicha-05-raksha-sukh.webp',
+  6: '/bagicha/bu-bagicha-06-sankat-mochan.webp',
+  7: '/bagicha/bu-bagicha-07-siddhi-bhakti.webp',
+  8: '/bagicha/bu-bagicha-08-phal-ashirwad.webp',
+};
+
+function getYTThumb(url?: string) {
+  if (!url) return '';
+  const m = url.match(/(?:youtu\.be\/|v=)([^&?/]+)/);
+  return m ? `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg` : '';
+}
 
 export default function BagicheSection() {
-  const [selectedBagicha, setSelectedBagicha] = useState<Bagicha>(BAGICHE_DATA[0]);
-
   return (
-    <section id="bagiche" className="py-24 px-4 sm:px-6 relative z-10 border-t border-slate-800/60 bg-slate-950/60 backdrop-blur-lg">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-widest text-amber-400 font-semibold mb-3 block">
-            One Garden Within Bhakti Udyan
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-bold font-serif text-white mb-4">
-            The 8 Bagiche of Hanuman Chalisa
-          </h2>
-          <p className="text-gray-300 text-base sm:text-lg mb-4">
-            40 चौपाइयाँ · 8 बगीचे · 8 दिन
-          </p>
-          <div className="inline-block bg-amber-500/10 border border-amber-500/30 rounded-full px-5 py-2 text-amber-300 text-sm font-medium">
-            रट्टा नहीं — कहानी और चित्रों से याद करें।
-          </div>
+    <section id="bagiche" className="py-24 px-6 bg-[#FFFBF0] relative">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center max-w-[720px] mx-auto mb-16">
+          <span className="inline-flex px-4 py-1 rounded-full bg-[#0B6E4F] text-white text-[11px] tracking-[0.2em] uppercase">One Garden Within Bhakti Udyan</span>
+          <h2 className="font-serif text-[40px] md:text-[52px] leading-[0.9] mt-6 text-[#1A140E]">The 8 Bagiche of Hanuman Chalisa</h2>
+          <div className="mt-3 text-[18px] text-[#5A4A38]">40 चौपाइयाँ · 8 बगीचे · 8 दिन</div>
+          <div className="mt-4 inline-block px-5 py-2 rounded-full bg-[#FFF0D6] border border-[#FFE0B8] text-[#9A5A00] text-[14px]">रट्टा नहीं — कहानी और चित्रों से याद करें।</div>
         </div>
 
-        {/* Celestial Map Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left: 8 Bagiche Celestial Nodes (List/Grid) */}
-          <div className="lg:col-span-5 space-y-3">
-            <h3 className="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-4 px-2">
-              Select a Garden Node
-            </h3>
-            {BAGICHE_DATA.map((bagicha) => {
-              const isSelected = selectedBagicha.id === bagicha.id;
-              return (
-                <button
-                  key={bagicha.id}
-                  onClick={() => setSelectedBagicha(bagicha)}
-                  className={`w-full text-left p-4 rounded-2xl transition-all duration-300 flex items-center justify-between group border ${
-                    isSelected
-                      ? 'bg-gradient-to-r from-amber-500/20 to-slate-900 border-amber-500/50 shadow-lg shadow-amber-500/10'
-                      : 'bg-slate-900/60 border-slate-800 hover:border-slate-700 hover:bg-slate-900'
-                  }`}
-                >
-                  <div className="flex items-center gap-4">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-serif font-bold text-sm ${
-                      isSelected ? 'bg-amber-500 text-slate-950' : 'bg-slate-800 text-amber-400 group-hover:bg-slate-700'
-                    }`}>
-                      0{bagicha.id}
-                    </div>
-                    <div>
-                      <h4 className={`font-serif font-bold text-base ${isSelected ? 'text-amber-300' : 'text-white'}`}>
-                        {bagicha.title}
-                      </h4>
-                      <p className="text-xs text-gray-400 mt-0.5">
-                        {bagicha.chaupaiRange}
-                      </p>
-                    </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {BAGICHE_DATA.map((b) => (
+            <div key={b.id} className="group relative rounded-[28px] bg-white border border-[#F2E6D3] overflow-hidden shadow-[0_16px_60px_-24px_rgba(0,0,0,0.18)] hover:shadow-[0_20px_80px_-20px_rgba(0,0,0,0.25)] transition-all">
+              <div className={`absolute inset-x-0 top-0 h-[8px] bg-gradient-to-r ${b.theme || 'from-amber-500/20 to-orange-500/20'}`} />
+              <div className="relative h-[320px] overflow-hidden">
+                <img src={BAGICHA_IMAGES[b.id]} alt={b.englishName} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-[1200ms]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <div className="absolute top-5 left-5 flex gap-2">
+                  <span className="px-3 py-1 rounded-full bg-[#FFFBF0]/90 text-[11px] tracking-widest uppercase text-[#1A140E] font-semibold">Bagicha {b.id}</span>
+                  <span className="px-3 py-1 rounded-full bg-[#0B6E4F] text-white text-[11px]">{b.chaupaiRange}</span>
+                </div>
+                <div className="absolute bottom-5 left-6 right-6">
+                  <h3 className="font-serif text-[28px] leading-tight text-white">{b.devanagariTitle || b.title}</h3>
+                  <div className="text-[12px] tracking-[0.18em] uppercase text-[#FFD6A3]">{b.englishName}</div>
+                </div>
+                {b.youtubeUrl && (
+                  <a href={b.youtubeUrl} target="_blank" className="absolute bottom-5 right-5 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow hover:bg-white transition-colors">▶</a>
+                )}
+              </div>
+              <div className="p-6">
+                <div className="text-[13px] font-semibold text-[#0B6E4F]">{b.bhav}</div>
+                <p className="mt-2 text-[14px] leading-[1.6] text-[#6B5A46]">{b.description}</p>
+                <div className="mt-5">
+                  <div className="text-[10px] tracking-[0.2em] uppercase text-[#B9A68C] mb-2">Memory Journey</div>
+                  <div className="flex flex-wrap gap-2">
+                    {b.memoryJourney.map((mj, i) => (
+                      <span key={i} className="px-3 py-1 rounded-full bg-[#FFF2E0] border border-[#F2E6D3] text-[11px] text-[#6B4A24]">{mj}</span>
+                    ))}
                   </div>
-                  <ChevronRight className={`w-5 h-5 transition-transform ${isSelected ? 'text-amber-400 translate-x-1' : 'text-gray-600 group-hover:text-gray-400'}`} />
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Right: Selected Bagicha Detailed Experience */}
-          <div className="lg:col-span-7 bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden backdrop-blur-md">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="flex items-center justify-between mb-6">
-              <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold tracking-wider uppercase">
-                Bagicha 0{selectedBagicha.id} of 08
-              </span>
-              <span className="text-sm font-mono text-gray-400">
-                {selectedBagicha.chaupaiRange}
-              </span>
-            </div>
-
-            <h3 className="text-2xl sm:text-3xl font-bold font-serif text-white mb-3">
-              {selectedBagicha.title}
-            </h3>
-            <p className="text-gray-300 text-base leading-relaxed mb-8">
-              {selectedBagicha.description}
-            </p>
-
-            {/* Memory Anchors Section */}
-            <div className="mb-8">
-              <h4 className="text-xs uppercase tracking-widest text-amber-400 font-semibold mb-4">
-                Memory Anchors (Landmarks in the Garden)
-              </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {selectedBagicha.memoryAnchors.map((anchor: string, idx: number) => (
-                  <div key={idx} className="flex items-start gap-3 bg-slate-950/50 border border-slate-800/80 rounded-xl p-3.5">
-                    <div className="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
-                      {idx + 1}
+                </div>
+                <div className="mt-5 grid grid-cols-1 gap-2">
+                  {b.memoryAnchors.slice(0,3).map((ma, i) => (
+                    <div key={i} className="flex items-center gap-2 text-[12px] text-[#5A4A38]">
+                      <span className="w-6 h-6 rounded-full bg-[#E6F5EE] text-[#0B6E4F] flex items-center justify-center text-[10px] font-bold">{i+1}</span>
+                      <span className="truncate">{ma}</span>
                     </div>
-                    <span className="text-sm text-gray-200 font-medium">
-                      {anchor}
-                    </span>
-                  </div>
-                ))}
+                  ))}
+                </div>
+                <div className="mt-6 flex gap-3">
+                  <a href={b.youtubeUrl} target="_blank" className="flex-1 inline-flex justify-center items-center gap-2 py-2.5 rounded-full bg-[#2B2117] text-white text-[12px] font-semibold hover:bg-black transition-colors">Watch Video →</a>
+                  <button className="px-4 py-2.5 rounded-full border border-[#F2E6D3] bg-[#FFFBF0] text-[#5A4A38] text-[12px]">Explore</button>
+                </div>
               </div>
             </div>
-
-            {/* YouTube Action */}
-            {selectedBagicha.youtubeUrl && (
-              <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span className="text-sm text-gray-400">Continue learning on our channel:</span>
-                <a
-                  href={selectedBagicha.youtubeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-red-600/20 border border-red-500/40 text-red-300 hover:bg-red-600/30 transition-all font-medium text-sm"
-                >
-                  <Youtube className="w-4 h-4 text-red-400" />
-                  Watch Bagicha 0{selectedBagicha.id} on YouTube →
-                </a>
-              </div>
-            )}
-          </div>
+          ))}
         </div>
       </div>
     </section>
