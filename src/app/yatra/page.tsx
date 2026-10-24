@@ -109,8 +109,8 @@ export default function YatraPage() {
               <a href="/" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#2B2117] text-white text-[13px] font-medium shadow-[0_2px_10px_rgba(43,33,23,0.2)] hover:bg-black transition-all">
                 <span className="text-[15px]">ॐ</span> Bhakti Udyan
               </a>
-              <a href="/yatra" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0B6E4F] text-white text-[13px] font-medium shadow-[0_2px_10px_rgba(11,110,79,0.25)] hover:bg-[#095a3f] transition-all">
-                8 Bagiche
+              <button onClick={()=>window.scrollTo({top:0, behavior:"smooth"})} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0B6E4F] text-white text-[13px] font-medium shadow-[0_2px_10px_rgba(11,110,79,0.25)] hover:bg-[#095a3f] transition-all">
+                Grand Garden
               </a>
             </div>
             <div className="text-center">
