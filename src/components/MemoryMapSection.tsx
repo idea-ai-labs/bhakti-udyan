@@ -67,7 +67,7 @@ export default function MemoryMapSection() {
                 <img src={getImage(active)} alt={active.title || 'Bagicha'} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-4 left-5 right-5">
-                  <div className="inline-flex px-3 py-1 rounded-full bg-[#0B6E4F] text-white text-[11px]">{(active.memoryJourney && active.memoryJourney[0]) || active.bhav || 'Memory Journey'}</div>
+                  <div className="inline-flex px-3 py-1 rounded-full bg-[#0B6E4F] text-white text-[11px]">{active.chaupaiRange} · {active.hindiName}</div>
                 </div>
               </div>
               <div className="p-6">
