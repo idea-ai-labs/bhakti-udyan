@@ -47,6 +47,30 @@ export default function YatraPage() {
     }
   }, [selectedAnchor]);
 
+  // Persist visited state across navigation to main site and reloads
+  useEffect(() => {
+    const saved = localStorage.getItem('yatra-visited-anchors');
+    if (saved) {
+      try { setVisitedAnchors(new Set(JSON.parse(saved))); } catch {}
+    }
+    const savedBagiche = localStorage.getItem('yatra-explored-bagiche');
+    if (savedBagiche) {
+      try { setExploredBagiche(new Set(JSON.parse(savedBagiche))); } catch {}
+    }
+  }, []);
+
+  useEffect(() => {
+    if (visitedAnchors.size > 0) {
+      localStorage.setItem('yatra-visited-anchors', JSON.stringify([...visitedAnchors]));
+    }
+  }, [visitedAnchors]);
+
+  useEffect(() => {
+    if (exploredBagiche.size > 0) {
+      localStorage.setItem('yatra-explored-bagiche', JSON.stringify([...exploredBagiche]));
+    }
+  }, [exploredBagiche]);
+
   const isBagichaCompleted = (bagicha: Bagicha) => {
     return bagicha.anchors.every(a => visitedAnchors.has(a.number));
   };
@@ -97,6 +121,14 @@ export default function YatraPage() {
                 <span>{totalAnchorsVisited}/40 anchors</span>
                 <div className="w-20 h-1.5 bg-[#FFF2E0] rounded-full overflow-hidden"><div className="h-full bg-[#0B6E4F]" style={{width:`${(totalAnchorsVisited/40)*100}%`}} /></div>
               </div>
+              <button onClick={()=>{
+                if(confirm('Reset yatra progress?')) {
+                  setVisitedAnchors(new Set());
+                  setExploredBagiche(new Set());
+                  localStorage.removeItem('yatra-visited-anchors');
+                  localStorage.removeItem('yatra-explored-bagiche');
+                }
+              }} className="px-2.5 py-1.5 rounded-full bg-white border border-[#F5E6C8] text-[11px] hover:border-red-300" title="Reset progress">Reset</button>
               <button onClick={()=>setLang(lang==="hindi"?"english":"hindi")} className="px-3 py-1.5 rounded-full bg-white border border-[#F5E6C8] text-[11px]">{lang==="hindi"?"EN":"हि"}</button>
             </div>
           </div>
@@ -167,11 +199,22 @@ export default function YatraPage() {
   const idx = BAGICHE_DATA.findIndex(b=>b.id===selectedBagicha.id);
   return (
     <div className="min-h-screen bg-[#FFFBF0] text-[#2B2117]">
-      {/* Sticky header - compact breadcrumb */}
+            {/* Sticky header - centered with prominent round navigation */}
       <header className="sticky top-0 z-30 bg-[#FFFBF0]/95 backdrop-blur border-b border-[#F5E6C8]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-3">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2 min-w-0">
+          {/* Top nav - centered round buttons, bigger, different colors */}
+          <div className="flex items-center justify-center gap-2.5 mb-3">
+            <a href="/" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#2B2117] text-white text-[12px] md:text-[13px] font-medium shadow hover:bg-black transition-all">
+              <span>ॐ</span> Bhakti Udyan
+            </a>
+            <a href="/yatra" onClick={(e)=>{ e.preventDefault(); setSelectedBagicha(null); setSelectedAnchor(null); }} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#0B6E4F] text-white text-[12px] md:text-[13px] font-medium shadow-[0_2px_8px_rgba(11,110,79,0.3)] hover:bg-[#095a3f] transition-all">
+              <span>←</span> 8 Bagiche
+            </a>
+            <button onClick={()=>setLang(lang==="hindi"?"english":"hindi")} className="px-3 py-2 rounded-full bg-white border-2 border-[#D4AF7A] text-[11px] font-bold text-[#2B2117] hover:bg-[#FFF8EC]">{lang==="hindi"?"EN":"हि"}</button>
+          </div>
+          {/* Centered title */}
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 min-w-0">
               <a href="/" className="hidden md:inline text-[11px] px-2.5 py-1 rounded-full bg-white border border-[#F5E6C8] hover:border-[#D4AF7A]">⌂ Home</a>
               <button onClick={()=>{setSelectedBagicha(null); setSelectedAnchor(null);}} className="text-[12px] px-2.5 py-1 rounded-full bg-white border border-[#F5E6C8] hover:border-[#D4AF7A] shrink-0 flex items-center gap-1"><span>←</span><span className="hidden md:inline">Grand Garden</span><span className="md:hidden">Garden</span></button>
               <button onClick={()=>{setSelectedBagicha(null); setSelectedAnchor(null);}} className="md:hidden text-[12px] px-2 py-1 rounded-full bg-[#0B6E4F] text-white">Yatra Home</button>
