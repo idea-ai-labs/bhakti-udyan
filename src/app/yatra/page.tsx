@@ -30,7 +30,11 @@ export default function YatraPage() {
   const handleBagichaSelect = (b: Bagicha)=>{
     setSelectedBagicha(b);
     setSelectedAnchor(b.anchors[0]);
-    setExplored(prev=> new Set([...prev, b.id]));
+    setExplored(prev=> {
+      const next = new Set(prev);
+      next.add(b.id);
+      return next;
+    });
     window.scrollTo({top:0, behavior:"smooth"});
   };
 
