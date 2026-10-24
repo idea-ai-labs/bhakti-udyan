@@ -230,21 +230,11 @@ export default function YatraPage() {
             <div className="p-12 text-center text-[#8A7352]">Select an anchor</div>
           ) : (
             <>
-                            {/* Chaupai + Big Anchor Hero - Anchor Prominent */}
-              <div className="relative min-h-[420px] md:min-h-[480px] bg-[#FFFBF0] border-b border-[#F5E6C8] overflow-hidden flex items-center justify-center p-6 md:p-10">
-                {/* Chaupai image as soft blurred backdrop */}
-                <img
-                  src={selectedAnchor.chaupaiImage}
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover opacity-[0.18] blur-[2px] scale-[1.05]"
-                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#FFFBF0]/40 via-[#FFFBF0]/60 to-[#FFFBF0]" />
-
-                {/* Big Anchor - Prominent */}
-                <div className="relative z-10 flex flex-col items-center">
-                  <div className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-[32px] bg-white border-[3px] border-[#D4AF7A]/50 shadow-[0_12px_40px_rgba(43,33,23,0.15),0_0_0_8px_rgba(212,175,122,0.15)] overflow-hidden">
+                                          {/* DETAILED HERO - Fixed: Chaupai big on right, Anchor big on left */}
+              <div className="grid md:grid-cols-[360px_1fr] border-b border-[#F5E6C8]">
+                {/* Left: Big Anchor Prominent */}
+                <div className="bg-[#FFF8EC] p-6 md:p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-[#F5E6C8]">
+                  <div className="w-[220px] h-[220px] md:w-[260px] md:h-[260px] rounded-[28px] bg-white border-[3px] border-[#D4AF7A]/60 shadow-[0_12px_32px_rgba(43,33,23,0.12)] overflow-hidden">
                     <img
                       src={selectedAnchor.anchorImage}
                       alt={selectedAnchor.label}
@@ -257,31 +247,45 @@ export default function YatraPage() {
                         if (fb) fb.style.display = 'grid';
                       }}
                     />
-                    <div className="anchor-fallback-big hidden absolute inset-0 place-items-center bg-[#FFF8EC] text-[80px]">
+                    <div className="anchor-fallback-big hidden w-full h-full place-items-center bg-[#FFFBF0] text-[64px]">
                       {selectedAnchor.symbol}
                     </div>
                   </div>
                   <div className="mt-5 text-center">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0B6E4F] text-white text-[12px] tracking-[0.1em] shadow">
-                      <span>Chaupai {selectedAnchor.number}</span>
-                      <span className="opacity-60">•</span>
-                      <span className="font-serif font-bold">{selectedAnchor.label}</span>
-                    </div>
-                    <p className="mt-3 text-[11px] tracking-[0.2em] uppercase text-[#8A7352]">Memory Anchor • स्मृति चिह्न</p>
+                    <p className="text-[11px] tracking-[0.2em] uppercase text-[#8A7352]">Memory Anchor</p>
+                    <h3 className="font-serif text-[22px] font-bold text-[#2B2117] mt-1">{selectedAnchor.label}</h3>
+                    <p className="text-[12px] text-[#5A4A38] mt-1">Chaupai {selectedAnchor.number}</p>
                   </div>
+                  <div className="mt-4 px-4 py-2 rounded-full bg-[#0B6E4F] text-white text-[11px]">Bagicha {selectedBagicha.id} • {selectedBagicha.hindiName}</div>
                 </div>
 
-                {/* Chaupai thumbnail corner */}
-                <div className="absolute bottom-4 right-4 z-10 hidden md:block">
-                  <div className="w-[140px] h-[80px] rounded-[14px] overflow-hidden border-2 border-white shadow-lg">
-                    <img
-                      src={selectedAnchor.chaupaiImage}
-                      alt={`Chaupai ${selectedAnchor.number} scene`}
-                      className="w-full h-full object-cover"
-                      onError={(e) => { (e.currentTarget as HTMLImageElement).parentElement!.style.display = 'none'; }}
-                    />
+                {/* Right: Big Chaupai Image */}
+                <div className="relative h-[320px] md:h-[460px] bg-[#2B2117] overflow-hidden">
+                  <img
+                    src={selectedAnchor.chaupaiImage}
+                    alt={`Chaupai ${selectedAnchor.number} - ${selectedAnchor.label} - ${selectedAnchor.chaupaiHindi.slice(0,30)}`}
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                    onError={(e) => {
+                      const t = e.currentTarget as HTMLImageElement;
+                      t.style.display = 'none';
+                      const fb = t.parentElement?.querySelector('.chaupai-fallback') as HTMLElement;
+                      if (fb) fb.style.display = 'grid';
+                    }}
+                  />
+                  <div className="chaupai-fallback hidden absolute inset-0 place-items-center bg-gradient-to-br from-[#FFF8EC] to-[#FFF2E0]">
+                    <div className="text-center p-6">
+                      <div className="text-[64px]">{selectedAnchor.symbol}</div>
+                      <p className="mt-2 text-[12px] text-[#8A7352]">{selectedAnchor.chaupaiImage}</p>
+                      <p className="text-[10px] text-[#8A7352]">Add image at public{selectedAnchor.chaupaiImage}</p>
+                    </div>
                   </div>
-                  <p className="text-[10px] text-[#8A7352] mt-1 text-center">Scene • दृश्य</p>
+                  {/* Subtle gradient overlay for text readability if needed */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+                  <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+                    <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur text-white text-[11px]">Scene • दृश्य — Chaupai {selectedAnchor.number}</span>
+                    <span className="hidden md:inline px-3 py-1 rounded-full bg-white/90 text-[#2B2117] text-[11px]">{selectedAnchor.chaupaiImage.replace('/yatra/chaupai/','')}</span>
+                  </div>
                 </div>
               </div>
 
@@ -291,7 +295,10 @@ export default function YatraPage() {
                     <div>
                       <p className="text-[11px] tracking-[0.2em] uppercase text-[#8A7352] mb-2">Memory Anchor • स्मृति चिह्न</p>
                       <h3 className="font-serif text-[28px] text-[#2B2117]">{selectedAnchor.label}</h3>
+                      <div className="mt-2 bg-[#FFF8EC] border border-[#F5E6C8] rounded-[12px] px-3 py-2">
+                      <p className="text-[10px] tracking-[0.15em] uppercase text-[#8A7352]">Yaad karne ka sanket • Memory Trick</p>
                       <p className="text-[13px] text-[#5A4A38] mt-1">{selectedAnchor.memoryConnection}</p>
+                    </div>
                     </div>
                     <div className="bg-[#FFFBF0] rounded-[16px] border border-[#F5E6C8] p-5">
                       <p className="text-[11px] uppercase tracking-[0.2em] text-[#8A7352] mb-2">Chaupai {selectedAnchor.number}</p>
