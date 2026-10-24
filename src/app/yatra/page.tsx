@@ -102,34 +102,32 @@ export default function YatraPage() {
   if (!selectedBagicha) {
     return (
       <div className="min-h-screen bg-[#FFFBF0] text-[#2B2117]">
-        {/* Compact Hero */}
-        <header className="sticky top-0 z-20 bg-[#FFFBF0]/90 backdrop-blur border-b border-[#F5E6C8]">
-          <div className="max-w-[1280px] mx-auto px-4 md:px-8 py-4 md:py-5 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <a href="/" className="w-9 h-9 rounded-full bg-[#0B6E4F] grid place-items-center text-white font-serif hover:bg-[#095a3f] transition" title="Back to Bhakti Udyan main">ॐ</a>
-              <div>
-                <div className="flex items-center gap-2">
-                  <a href="/" className="text-[11px] text-[#0B6E4F] hover:underline">Bhakti Udyan</a>
-                  <span className="text-[11px] text-[#D4AF7A]">/</span>
-                  <h1 className="font-serif text-[18px] md:text-[20px] font-bold leading-none">Yatra</h1>
-                </div>
-                <p className="text-[11px] text-[#8A7352] mt-0.5">40 Chaupais → 8 Bagiche → 40 Memory Anchors</p>
-              </div>
+                        {/* HEADER - Main Page - Centered with 2 round buttons */}
+        <header className="sticky top-0 z-20 bg-[#FFFBF0]/95 backdrop-blur border-b border-[#F5E6C8]">
+          <div className="max-w-[1280px] mx-auto px-4 md:px-8 py-4">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <a href="/" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#2B2117] text-white text-[13px] font-medium shadow-[0_2px_10px_rgba(43,33,23,0.2)] hover:bg-black transition-all">
+                <span className="text-[15px]">ॐ</span> Bhakti Udyan
+              </a>
+              <a href="/yatra" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0B6E4F] text-white text-[13px] font-medium shadow-[0_2px_10px_rgba(11,110,79,0.25)] hover:bg-[#095a3f] transition-all">
+                8 Bagiche
+              </a>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="hidden md:flex items-center gap-2 text-[11px] text-[#8A7352]">
-                <span>{totalAnchorsVisited}/40 anchors</span>
-                <div className="w-20 h-1.5 bg-[#FFF2E0] rounded-full overflow-hidden"><div className="h-full bg-[#0B6E4F]" style={{width:`${(totalAnchorsVisited/40)*100}%`}} /></div>
+            <div className="text-center">
+              <h1 className="font-serif text-[22px] md:text-[26px] font-bold">Yatra</h1>
+              <p className="text-[12px] md:text-[13px] text-[#8A7352] mt-1">40 Chaupais → 8 Bagiche → 40 Memory Anchors</p>
+              <div className="mt-3 flex items-center justify-center gap-2">
+                <button onClick={()=>{
+                  if(confirm('Reset yatra progress?')) {
+                    setVisitedAnchors(new Set());
+                    setExploredBagiche(new Set());
+                    localStorage.removeItem('yatra-visited-anchors');
+                    localStorage.removeItem('yatra-explored-bagiche');
+                  }
+                }} className="px-3 py-1 rounded-full bg-white border border-[#F5E6C8] text-[11px] hover:border-red-300">Reset</button>
+                <button onClick={()=>setLang(lang==="hindi"?"english":"hindi")} className="px-3 py-1 rounded-full bg-white border border-[#F5E6C8] text-[11px]">{lang==="hindi"?"EN":"हि"}</button>
+                <span className="text-[11px] text-[#8A7352]">{totalAnchorsVisited}/40 • {progress}/8</span>
               </div>
-              <button onClick={()=>{
-                if(confirm('Reset yatra progress?')) {
-                  setVisitedAnchors(new Set());
-                  setExploredBagiche(new Set());
-                  localStorage.removeItem('yatra-visited-anchors');
-                  localStorage.removeItem('yatra-explored-bagiche');
-                }
-              }} className="px-2.5 py-1.5 rounded-full bg-white border border-[#F5E6C8] text-[11px] hover:border-red-300" title="Reset progress">Reset</button>
-              <button onClick={()=>setLang(lang==="hindi"?"english":"hindi")} className="px-3 py-1.5 rounded-full bg-white border border-[#F5E6C8] text-[11px]">{lang==="hindi"?"EN":"हि"}</button>
             </div>
           </div>
         </header>
@@ -199,23 +197,12 @@ export default function YatraPage() {
   const idx = BAGICHE_DATA.findIndex(b=>b.id===selectedBagicha.id);
   return (
     <div className="min-h-screen bg-[#FFFBF0] text-[#2B2117]">
-            {/* Sticky header - centered with prominent round navigation */}
+      {/* Sticky header - compact breadcrumb */}
       <header className="sticky top-0 z-30 bg-[#FFFBF0]/95 backdrop-blur border-b border-[#F5E6C8]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-3">
-          {/* Top nav - centered round buttons, bigger, different colors */}
-          <div className="flex items-center justify-center gap-2.5 mb-3">
-            <a href="/" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#2B2117] text-white text-[12px] md:text-[13px] font-medium shadow hover:bg-black transition-all">
-              <span>ॐ</span> Bhakti Udyan
-            </a>
-            <a href="/yatra" onClick={(e)=>{ e.preventDefault(); setSelectedBagicha(null); setSelectedAnchor(null); }} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#0B6E4F] text-white text-[12px] md:text-[13px] font-medium shadow-[0_2px_8px_rgba(11,110,79,0.3)] hover:bg-[#095a3f] transition-all">
-              <span>←</span> 8 Bagiche
-            </a>
-            <button onClick={()=>setLang(lang==="hindi"?"english":"hindi")} className="px-3 py-2 rounded-full bg-white border-2 border-[#D4AF7A] text-[11px] font-bold text-[#2B2117] hover:bg-[#FFF8EC]">{lang==="hindi"?"EN":"हि"}</button>
-          </div>
-          {/* Centered title */}
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-2 min-w-0">
-              <a href="/" className="hidden md:inline text-[11px] px-2.5 py-1 rounded-full bg-white border border-[#F5E6C8] hover:border-[#D4AF7A]">⌂ Home</a>
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2 min-w-0">
+              <a href="/" className="hidden md:inline text-[11px] px-2.5 py-1 rounded-full bg-white border border-[#F5E6C8] hover:border-[#D4AF7A]">Bhakti Udyan</a>
               <button onClick={()=>{setSelectedBagicha(null); setSelectedAnchor(null);}} className="text-[12px] px-2.5 py-1 rounded-full bg-white border border-[#F5E6C8] hover:border-[#D4AF7A] shrink-0 flex items-center gap-1"><span>←</span><span className="hidden md:inline">Grand Garden</span><span className="md:hidden">Garden</span></button>
               <button onClick={()=>{setSelectedBagicha(null); setSelectedAnchor(null);}} className="md:hidden text-[12px] px-2 py-1 rounded-full bg-[#0B6E4F] text-white">Yatra Home</button>
               <span className="text-[#D4AF7A]">/</span>
