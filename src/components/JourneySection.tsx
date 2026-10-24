@@ -1,47 +1,59 @@
-'use client';
 
+'use client';
 import { JOURNEY_STEPS } from '../data/udyanData';
 
 export default function JourneySection() {
   return (
-    <section className="py-24 px-4 sm:px-6 relative z-10 border-t border-slate-800/60">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-widest text-amber-400 font-semibold mb-3 block">
-            Visitor Journey
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold font-serif text-white mb-3">
-            Walking Through the Udyan
-          </h2>
-          <p className="text-gray-300 text-sm sm:text-base">
-            Your step-by-step path from first discovery to deep retention.
-          </p>
+    <section id="journey" className="relative py-24 px-6 bg-[#0A5E43] text-[#FFFBF0] border-t border-white/5">
+      <div className="max-w-7xl mx-auto">
+        <div className="max-w-[640px]">
+          <span className="inline-flex px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[11px] tracking-[0.2em] uppercase">8-Day Journey</span>
+          <h2 className="mt-6 font-serif text-[38px] md:text-[48px] leading-[0.9]">From Seed to Blossom</h2>
+          <p className="mt-4 text-[16px] leading-[1.6] text-[#C9E8DC]">A gentle daily rhythm — 5 chaupaiyan a day, story, image, and reflection. No pressure.</p>
         </div>
 
-        <div className="space-y-6">
-          {JOURNEY_STEPS.map((stepItem, idx) => (
-            <div
-              key={stepItem.step}
-              className="group relative bg-slate-900/60 border border-slate-800 hover:border-amber-500/40 rounded-2xl p-6 sm:p-8 transition-all duration-300 backdrop-blur-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
-            >
-              <div className="flex items-center gap-5">
-                <div className="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center font-serif font-bold text-xl text-amber-400 group-hover:bg-amber-500/10 group-hover:border-amber-500/30 transition-colors shrink-0">
-                  {stepItem.step}
+        <div className="mt-12 relative">
+          {/* timeline line */}
+          <div className="hidden md:block absolute left-[50%] top-0 bottom-0 w-px bg-gradient-to-b from-white/10 via-white/20 to-transparent" />
+          
+          <div className="space-y-10">
+            {JOURNEY_STEPS.map((step, idx) => {
+              const isEven = idx % 2 === 0;
+              return (
+                <div key={step.day} className={`relative flex flex-col md:flex-row gap-6 ${isEven ? '' : 'md:flex-row-reverse'}`}>
+                  <div className="flex-1">
+                    <div className={`rounded-[20px] bg-[#FFFBF0] text-[#1A140E] border border-white/20 p-6 shadow-[0_12px_40px_-16px_rgba(0,0,0,0.4)] ${isEven ? 'md:mr-12' : 'md:ml-12'}`}>
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] tracking-[0.2em] uppercase text-[#0B6E4F] font-semibold">Day {step.day}</span>
+                        <span className="px-2 py-1 rounded-full bg-[#0B6E4F]/10 text-[#0B6E4F] text-[10px] tracking-widest uppercase">{step.bagicha}</span>
+                      </div>
+                      <h3 className="mt-3 font-serif text-[22px] leading-tight">{step.title}</h3>
+                      <div className="mt-1 text-[12px] tracking-wide text-[#8A7352]">{step.devanagariTitle}</div>
+                      <p className="mt-3 text-[14px] leading-[1.6] text-[#5A4A38]">{step.focus}</p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {step.practices.map((pr, i) => (
+                          <span key={i} className="px-3 py-1 rounded-full bg-[#FFF2E0] border border-[#F2E6D3] text-[11px] text-[#6B4A24]">{pr}</span>
+                        ))}
+                      </div>
+                      <div className="mt-4 text-[11px] text-[#B9A68C]">Chaupai {step.chaupaiRange} · {step.timeEstimate}</div>
+                    </div>
+                  </div>
+                  <div className="hidden md:flex w-[48px] justify-center">
+                    <div className="w-[40px] h-[40px] rounded-full bg-[#FFFBF0] text-[#0B6E4F] border-4 border-[#0B6E4F] flex items-center justify-center font-serif font-bold text-[14px] shadow">{step.day}</div>
+                  </div>
+                  <div className="flex-1 hidden md:block" />
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold font-serif text-white mb-1 group-hover:text-amber-300 transition-colors">
-                    {stepItem.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {stepItem.description}
-                  </p>
-                </div>
-              </div>
-              <div className="hidden sm:flex items-center text-xs font-semibold text-gray-500 group-hover:text-amber-400 transition-colors uppercase tracking-widest">
-                <span>Step 0{idx + 1}</span>
-              </div>
-            </div>
-          ))}
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mt-16 text-center">
+          <div className="inline-flex flex-col items-center gap-3 px-8 py-6 rounded-[20px] bg-[#FFFBF0] text-[#1A140E] border border-white/20 shadow">
+            <div className="text-[13px] tracking-[0.2em] uppercase text-[#0B6E4F] font-semibold">Ready to begin?</div>
+            <div className="font-serif text-[24px]">Enter the Udyan today</div>
+            <a href="#bagiche" className="mt-2 px-6 py-2.5 rounded-full bg-[#0B6E4F] text-white text-[13px] font-semibold hover:bg-[#094A37] transition-colors">Start 8-Day Yatra →</a>
+          </div>
         </div>
       </div>
     </section>
