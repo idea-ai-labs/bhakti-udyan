@@ -29,7 +29,7 @@ export default function Navbar() {
           <Link href="#udyan" className="hover:text-[#D4AF7A] transition-colors">Sacred Gardens</Link>
           <Link href="#bagiche" className="hover:text-[#D4AF7A] transition-colors">8 Bagiche</Link>
           <Link href="#memory-map" className="hover:text-[#D4AF7A] transition-colors">Memory Map</Link>
-          <Link href="#journey" className="hover:text-[#D4AF7A] transition-colors">Start Here</Link>
+          <Link href="/yatra" className="hover:text-[#D4AF7A] transition-colors">Start Here</Link>
         </nav>
 
         <div className="flex items-center gap-3">
@@ -76,7 +76,7 @@ export default function Navbar() {
           <Link href="#udyan" onClick={() => setOpen(false)}>Sacred Gardens</Link>
           <Link href="#bagiche" onClick={() => setOpen(false)}>8 Bagiche</Link>
           <Link href="#memory-map" onClick={() => setOpen(false)}>Memory Map</Link>
-          <Link href="#journey" onClick={() => setOpen(false)}>Start Here</Link>
+          <Link href="/yatra" onClick={() => setOpen(false)}>Start Here</Link>
           <div className="flex gap-3 pt-4">
             <a href={SITE_LINKS.youtubeChannel} target="_blank" className="flex-1 inline-flex justify-center items-center gap-2 py-3 rounded-full bg-white/5 border border-white/10 text-white">YouTube</a>
             <a href={SITE_LINKS.youtubeSubscribe} target="_blank" className="flex-1 inline-flex justify-center items-center gap-2 py-3 rounded-full bg-red-600 text-white">Subscribe</a>
