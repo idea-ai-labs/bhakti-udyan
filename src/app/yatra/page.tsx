@@ -111,7 +111,7 @@ export default function YatraPage() {
               </a>
               <button onClick={()=>window.scrollTo({top:0, behavior:"smooth"})} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0B6E4F] text-white text-[13px] font-medium shadow-[0_2px_10px_rgba(11,110,79,0.25)] hover:bg-[#095a3f] transition-all">
                 Grand Garden
-              </a>
+              </button>
             </div>
             <div className="text-center">
               <h1 className="font-serif text-[22px] md:text-[26px] font-bold">Yatra</h1>
