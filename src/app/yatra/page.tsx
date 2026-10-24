@@ -230,17 +230,43 @@ export default function YatraPage() {
             <div className="p-12 text-center text-[#8A7352]">Select an anchor</div>
           ) : (
             <>
-              {/* Chaupai image placeholder */}
-              <div className="relative h-[220px] md:h-[340px] bg-gradient-to-br from-[#FFF8EC] via-[#FFF2E0] to-[#E8F5E9] grid place-items-center border-b border-[#F5E6C8]">
-                <div className="text-center">
-                  <div className="text-[11px] tracking-[0.2em] uppercase text-[#8A7352]">Chaupai {selectedAnchor.number} • {selectedAnchor.label}</div>
-                  <div className="font-serif text-[28px] mt-2">{selectedAnchor.symbol}</div>
-                  <div className="mt-2 text-[12px] text-[#8A7352]">{selectedAnchor.chaupaiImage}</div>
-                  <div className="mt-1 text-[10px] text-[#8A7352]">Drop real image at /public{selectedAnchor.chaupaiImage} to auto-load</div>
-                </div>
-                <div className="absolute top-4 left-4 w-14 h-14 rounded-[14px] bg-white border shadow grid place-items-center text-[20px]" title={selectedAnchor.anchorImage}>{selectedAnchor.symbol}</div>
-                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#0B6E4F] text-white text-[11px]">{selectedAnchor.label}</div>
-              </div>
+{/* Chaupai image - loads real /public/yatra/chaupai/ webp */}
+<div className="relative h- md:h- bg-[#FFFBF0] border-b border-[#F5E6C8] overflow-hidden">
+  <img
+    src={selectedAnchor.chaupaiImage}
+    alt={`Chaupai ${selectedAnchor.number} - ${selectedAnchor.label}`}
+    className="w-full h-full object-cover"
+    onError={(e) => {
+      const target = e.currentTarget as HTMLImageElement;
+      target.style.display = 'none';
+      const fallback = target.nextElementSibling as HTMLElement;
+      if (fallback) fallback.style.display = 'grid';
+    }}
+  />
+  {/* Fallback gradient if image missing */}
+  <div className="hidden absolute inset-0 bg-gradient-to-br from-[#FFF8EC] via-[#FFF2E0] to-[#E8F5E9] place-items-center">
+    <div className="text-center p-4">
+      <div className="text- tracking-[0.2em] uppercase text-[#8A7352]">Chaupai {selectedAnchor.number} • {selectedAnchor.label}</div>
+      <div className="font-serif text- mt-2">{selectedAnchor.symbol}</div>
+      <div className="mt-2 text- text-[#8A7352]">{selectedAnchor.chaupaiImage}</div>
+    </div>
+  </div>
+
+  {/* Anchor icon overlay */}
+  <div className="absolute top-4 left-4 w-14 h-14 rounded- bg-white border shadow overflow-hidden grid place-items-center">
+    <img
+      src={selectedAnchor.anchorImage}
+      alt={selectedAnchor.label}
+      className="w-full h-full object-cover"
+      onError={(e) => {
+        const t = e.currentTarget as HTMLImageElement;
+        t.style.display = 'none';
+      }}
+    />
+    <span className="absolute inset-0 grid place-items-center text- pointer-events-none">{selectedAnchor.symbol}</span>
+  </div>
+  <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#0B6E4F] text-white text-">{selectedAnchor.label}</div>
+</div>
 
               <div className="p-5 md:p-8">
                 {mode==="explore" && (
