@@ -1,6 +1,6 @@
 
 // Bhakti Udyan - Yatra Data - EXACT MASTER LIST - FINAL
-// Authoritative 40 Anchors from user - DO NOT CHANGE SPELLING
+// Authoritative 40 Anchors from user - DO NOT CHANGE SPELLING 
 
 export type Anchor = {
   number: number
