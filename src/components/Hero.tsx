@@ -69,7 +69,7 @@ export default function Hero() {
 
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
           <a
-            href="#bagiche"
+            href="/yatra"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-semibold shadow-lg shadow-amber-500/20 hover:from-amber-400 hover:to-amber-500 transition-all duration-300 transform hover:-translate-y-0.5"
           >
             <Compass className="w-5 h-5" />
