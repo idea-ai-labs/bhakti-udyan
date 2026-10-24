@@ -57,15 +57,6 @@ export default function BagicheSection() {
                 <div className="text-[13px] font-semibold text-[#0B6E4F]">{b.bhav}</div>
                 <p className="mt-2 text-[14px] leading-[1.6] text-[#6B5A46]">{b.description}</p>
                 
-                <div className="mt-5">
-                  <div className="text-[10px] tracking-[0.2em] uppercase text-[#B9A68C] mb-2">Memory Journey - Exact Anchors</div>
-                  <div className="flex flex-wrap gap-2">
-                    {(b.memoryAnchors || []).map((ma: any, i: number) => (
-                      <span key={i} className="px-3 py-1 rounded-full bg-[#FFF2E0] border border-[#F2E6D3] text-[11px] text-[#6B4A24]">{getText(ma)}</span>
-                    ))}
-                  </div>
-                </div>
-
                 <div className="mt-5 grid grid-cols-1 gap-2">
                   {(b.memoryAnchors || []).map((ma: any, i: number) => (
                     <div key={i} className="flex items-start gap-2 text-[12px] text-[#5A4A38]">
