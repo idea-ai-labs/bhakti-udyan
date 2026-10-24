@@ -38,8 +38,8 @@ export const BAGICHE_DATA: Bagicha[] = [
       "Chaupai 5 — Vajra Janeu"
     ],
     anchors: [
-      { chaupaiNumber: 1, label: "Gyan Sagar Tihun Lok" },
-      { chaupaiNumber: 2, label: "Ramdoot Pawan Putra" },
+      { chaupaiNumber: 1, label: "Gyan Sagar Tihu Lok" },
+      { chaupaiNumber: 2, label: "Ramdoot Pavan Putra" },
       { chaupaiNumber: 3, label: "Mahabir Sumati" },
       { chaupaiNumber: 4, label: "Kanchan Kundal" },
       { chaupaiNumber: 5, label: "Vajra Janeu" }
@@ -59,7 +59,7 @@ export const BAGICHE_DATA: Bagicha[] = [
     description: "Contemplating the heroic and majestic divine form, scholarship, and wondrous acts.",
     memoryAnchors: [
       "Chaupai 6 — Shankar Suvan",
-      "Chaupai 7 — Vidyavaan Chatur",
+      "Chaupai 7 — Vidyavan Chatur",
       "Chaupai 8 — Prabhu Charitra",
       "Chaupai 9 — Sukshm Bikat Roop",
       "Chaupai 10 — Bhim Roop Sanhare"
@@ -207,7 +207,7 @@ export const BAGICHE_DATA: Bagicha[] = [
       { chaupaiNumber: 35, label: "Aur Devta" }
     ],
     memoryJourney: ["अष्ट सिद्धियाँ", "राम-भक्ति का अमृत", "हनुमान जी का भजन", "अंतिम समय में स्मरण", "हनुमान जी की अनन्य भक्ति"],
-    youtubeUrl: ""
+    youtubeUrl: "https://youtu.be/THAKyUyTODY"
   },
   {
     id: 8,
@@ -234,7 +234,7 @@ export const BAGICHE_DATA: Bagicha[] = [
       { chaupaiNumber: 40, label: "Tulsidas" }
     ],
     memoryJourney: ["संकटों का अंत", "जयकार", "सौ बार पाठ", "पाठ करने वाले भक्त का कल्याण", "तुलसीदास जी की प्रार्थना"],
-    youtubeUrl: ""
+    youtubeUrl: "https://youtu.be/CCdWzT5AWZs"
   }
 ];
 
