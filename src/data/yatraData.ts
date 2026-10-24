@@ -1,6 +1,5 @@
-
-// Bhakti Udyan - Yatra Data - EXACT MASTER LIST - FINAL
-// Authoritative 40 Anchors from user - DO NOT CHANGE SPELLING 
+// Bhakti Udyan - Yatra Data - EXACT MASTER LIST - FINAL v3 - Simplified Filenames
+// Build-fix: anchorImg takes 1 required + optional to prevent TS2554
 
 export type Anchor = {
   number: number
@@ -30,8 +29,8 @@ export type Bagicha = {
   anchors: Anchor[]
 }
 
-const img = (n:number) => `/yatra/chaupai/chaupai-${String(n).padStart(2,'0')}.webp`
-const anchorImg = (n:number, slug:string) => `/yatra/anchors/anchor-${String(n).padStart(2,'0')}-${slug}.webp`
+const img = (n:number): string => `/yatra/chaupai/chaupai-${String(n).padStart(2,'0')}.webp`
+const anchorImg = (n:number, _extra?:string): string => `/yatra/anchors/anchor-${String(n).padStart(2,'0')}.webp`
 
 export const BAGICHE_DATA: Bagicha[] = [
   {
