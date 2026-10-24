@@ -61,13 +61,13 @@ export default function YatraPage() {
 
   useEffect(() => {
     if (visitedAnchors.size > 0) {
-      localStorage.setItem('yatra-visited-anchors', JSON.stringify([...visitedAnchors]));
+      localStorage.setItem('yatra-visited-anchors', JSON.stringify(Array.from(visitedAnchors)));
     }
   }, [visitedAnchors]);
 
   useEffect(() => {
     if (exploredBagiche.size > 0) {
-      localStorage.setItem('yatra-explored-bagiche', JSON.stringify([...exploredBagiche]));
+      localStorage.setItem('yatra-explored-bagiche', JSON.stringify(Array.from(exploredBagiche)));
     }
   }, [exploredBagiche]);
 
