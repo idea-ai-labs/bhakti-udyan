@@ -230,45 +230,59 @@ export default function YatraPage() {
             <div className="p-12 text-center text-[#8A7352]">Select an anchor</div>
           ) : (
             <>
-                            {/* Chaupai image - loads real webp from public/yatra/chaupai/ */}
-              <div className="relative h-[220px] md:h-[340px] bg-[#FFFBF0] border-b border-[#F5E6C8] overflow-hidden">
+                            {/* Chaupai + Big Anchor Hero - Anchor Prominent */}
+              <div className="relative min-h-[420px] md:min-h-[480px] bg-[#FFFBF0] border-b border-[#F5E6C8] overflow-hidden flex items-center justify-center p-6 md:p-10">
+                {/* Chaupai image as soft blurred backdrop */}
                 <img
                   src={selectedAnchor.chaupaiImage}
-                  alt={`Chaupai ${selectedAnchor.number} - ${selectedAnchor.label}`}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  onError={(e) => {
-                    const target = e.currentTarget as HTMLImageElement;
-                    target.style.display = 'none';
-                    const fallback = target.nextElementSibling as HTMLElement;
-                    if (fallback) fallback.style.display = 'grid';
-                  }}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-cover opacity-[0.18] blur-[2px] scale-[1.05]"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
                 />
-                <div className="hidden absolute inset-0 bg-gradient-to-br from-[#FFF8EC] via-[#FFF2E0] to-[#E8F5E9] place-items-center">
-                  <div className="text-center p-4">
-                    <div className="text-[11px] tracking-[0.2em] uppercase text-[#8A7352]">Chaupai {selectedAnchor.number} • {selectedAnchor.label}</div>
-                    <div className="font-serif text-[28px] mt-2">{selectedAnchor.symbol}</div>
-                    <div className="mt-2 text-[10px] text-[#8A7352]">Missing: {selectedAnchor.chaupaiImage}</div>
+                <div className="absolute inset-0 bg-gradient-to-b from-[#FFFBF0]/40 via-[#FFFBF0]/60 to-[#FFFBF0]" />
+
+                {/* Big Anchor - Prominent */}
+                <div className="relative z-10 flex flex-col items-center">
+                  <div className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-[32px] bg-white border-[3px] border-[#D4AF7A]/50 shadow-[0_12px_40px_rgba(43,33,23,0.15),0_0_0_8px_rgba(212,175,122,0.15)] overflow-hidden">
+                    <img
+                      src={selectedAnchor.anchorImage}
+                      alt={selectedAnchor.label}
+                      className="w-full h-full object-cover"
+                      loading="eager"
+                      onError={(e) => {
+                        const img = e.currentTarget as HTMLImageElement;
+                        img.style.display = 'none';
+                        const fb = img.parentElement?.querySelector('.anchor-fallback-big') as HTMLElement;
+                        if (fb) fb.style.display = 'grid';
+                      }}
+                    />
+                    <div className="anchor-fallback-big hidden absolute inset-0 place-items-center bg-[#FFF8EC] text-[80px]">
+                      {selectedAnchor.symbol}
+                    </div>
+                  </div>
+                  <div className="mt-5 text-center">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0B6E4F] text-white text-[12px] tracking-[0.1em] shadow">
+                      <span>Chaupai {selectedAnchor.number}</span>
+                      <span className="opacity-60">•</span>
+                      <span className="font-serif font-bold">{selectedAnchor.label}</span>
+                    </div>
+                    <p className="mt-3 text-[11px] tracking-[0.2em] uppercase text-[#8A7352]">Memory Anchor • स्मृति चिह्न</p>
                   </div>
                 </div>
-                <div className="absolute top-4 left-4 w-24 h-24 md:w-28 md:h-28 rounded-[20px] bg-white border-2 border-[#F5E6C8] shadow-[0_4px_20px_rgba(0,0,0,0.1)] overflow-hidden">
-                  <img
-                    src={selectedAnchor.anchorImage}
-                    alt={selectedAnchor.label}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                    onError={(e) => {
-                      const img = e.currentTarget as HTMLImageElement;
-                      img.style.display = 'none';
-                      const fallback = img.parentElement?.querySelector('.anchor-fallback') as HTMLElement;
-                      if (fallback) fallback.style.display = 'grid';
-                    }}
-                  />
-                  <div className="anchor-fallback hidden absolute inset-0 place-items-center bg-[#FFFBF0] text-[36px]">
-                    {selectedAnchor.symbol}
+
+                {/* Chaupai thumbnail corner */}
+                <div className="absolute bottom-4 right-4 z-10 hidden md:block">
+                  <div className="w-[140px] h-[80px] rounded-[14px] overflow-hidden border-2 border-white shadow-lg">
+                    <img
+                      src={selectedAnchor.chaupaiImage}
+                      alt={`Chaupai ${selectedAnchor.number} scene`}
+                      className="w-full h-full object-cover"
+                      onError={(e) => { (e.currentTarget as HTMLImageElement).parentElement!.style.display = 'none'; }}
+                    />
                   </div>
+                  <p className="text-[10px] text-[#8A7352] mt-1 text-center">Scene • दृश्य</p>
                 </div>
-                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#0B6E4F] text-white text-[11px]">{selectedAnchor.label}</div>
               </div>
 
               <div className="p-5 md:p-8">
