@@ -94,66 +94,59 @@ export default function YatraPage() {
             ))}
           </div>
 
-          {/* Circular Grand Garden Map */}
+                    {/* Grand Garden - 8 Sets with set1.jpg ... set8.jpg */}
           <div className="relative bg-white rounded-[28px] border border-[#F5E6C8] p-4 md:p-8 shadow-[0_8px_40px_rgba(43,33,23,0.06)]">
-            <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-6 items-center">
-              {/* SVG Map */}
-              <div className="relative aspect-square md:aspect-[1.1] w-full bg-[#FFFBF0] rounded-[20px] border border-[#FFF2E0] overflow-hidden">
-                <svg viewBox="0 0 400 400" className="w-full h-full">
-                  {/* pathways */}
-                  <circle cx="200" cy="200" r="120" fill="none" stroke="#F5E6C8" strokeDasharray="6 6"/>
-                  {BAGICHE_DATA.map((b,idx)=>{
-                    const angle = (idx * 45 - 90) * Math.PI/180;
-                    const x = 200 + 130 * Math.cos(angle);
-                    const y = 200 + 130 * Math.sin(angle);
-                    return <line key={`l-${b.id}`} x1="200" y1="200" x2={x} y2={y} stroke="#E8DCC0" strokeWidth="1.2" opacity="0.6"/>
-                  })}
-                  {/* center lotus */}
-                  <g>
-                    <circle cx="200" cy="200" r="28" fill="#0B6E4F"/>
-                    <text x="200" y="206" textAnchor="middle" fill="white" fontSize="20">🪷</text>
-                  </g>
-                  {BAGICHE_DATA.map((b,idx)=>{
-                    const angle = (idx * 45 - 90) * Math.PI/180;
-                    const x = 200 + 130 * Math.cos(angle);
-                    const y = 200 + 130 * Math.sin(angle);
-                    const exploredDone = explored.has(b.id);
-                    return (
-                      <g key={b.id} style={{cursor:"pointer"}} onClick={()=>handleBagichaSelect(b)}>
-                        <circle cx={x} cy={y} r="30" fill={exploredDone ? "#0B6E4F" : "white"} stroke={b.color} strokeWidth="2" />
-                        <text x={x} y={y-4} textAnchor="middle" fontSize="10" fontWeight="700" fill={exploredDone ? "white" : "#2B2117"}>{b.id}</text>
-                        <text x={x} y={y+8} textAnchor="middle" fontSize="7" fill={exploredDone ? "white" : "#5A4A38"}>{b.englishName.split(" ")[0]}</text>
-                      </g>
-                    )
-                  })}
-                </svg>
-                <div className="absolute bottom-3 left-3 right-3 flex justify-between text-[10px] text-[#8A7352]">
-                  <span>Progress: {progress}/8 Bagiche</span>
-                  <span>Tap a garden to enter →</span>
+            <div className="flex justify-between items-center mb-6">
+              <div>
+                <h2 className="font-serif text-[22px] md:text-[28px] text-[#2B2117]">8 Bagiche • 8 Sets</h2>
+                <p className="text-[13px] text-[#8A7352]">Tap a garden image to enter its 5 chaupais</p>
+              </div>
+              <div className="text-right text-[11px] text-[#8A7352]">
+                <div>Progress: {progress}/8</div>
+                <div className="mt-1 w-24 h-1.5 bg-[#FFF2E0] rounded-full overflow-hidden">
+                  <div className="h-full bg-[#0B6E4F]" style={{width:`${(progress/8)*100}%`}} />
                 </div>
               </div>
+            </div>
 
-              {/* List */}
-              <div className="space-y-3">
-                {BAGICHE_DATA.map(b=>(
-                  <button key={b.id} onClick={()=>handleBagichaSelect(b)} className="w-full text-left bg-[#FFFBF0] hover:bg-white border border-[#F5E6C8] rounded-[16px] p-4 flex gap-4 transition-all group">
-                    <div className="w-10 h-10 rounded-full bg-white border grid place-items-center font-bold text-[#0B6E4F]">{b.id}</div>
-                    <div className="flex-1">
-                      <div className="flex justify-between">
-                        <span className="font-serif font-semibold text-[#2B2117]">{b.hindiName}</span>
-                        <span className="text-[11px] text-[#8A7352]">{b.chaupaiRange}</span>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+              {BAGICHE_DATA.map((b)=>{
+                const exploredDone = explored.has(b.id);
+                return (
+                  <button key={b.id} onClick={()=>handleBagichaSelect(b)} className="group text-left rounded-[20px] overflow-hidden border-2 bg-[#FFFBF0] border-[#F5E6C8] hover:border-[#D4AF7A] hover:shadow-[0_8px_24px_rgba(43,33,23,0.12)] transition-all">
+                    <div className="relative h-[160px] md:h-[200px] overflow-hidden">
+                      <img
+                        src={`/yatra/chaupai/set${b.id}.jpg`}
+                        alt={`Set ${b.id} - ${b.hindiName}`}
+                        className="w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-700"
+                        loading="lazy"
+                        onError={(e)=>{
+                          const img = e.currentTarget as HTMLImageElement;
+                          img.style.display='none';
+                          const fb = img.parentElement?.querySelector('.set-fallback') as HTMLElement;
+                          if(fb) fb.style.display='grid';
+                        }}
+                      />
+                      <div className="set-fallback hidden absolute inset-0 place-items-center bg-gradient-to-br from-[#FFF8EC] to-[#FFE4B5]">
+                        <span className="text-[32px]">🌿</span>
                       </div>
-                      <p className="text-[12px] text-[#5A4A38]">{b.englishName} • {b.bhav}</p>
-                      <div className="flex gap-1 mt-2">
-                        {b.anchors.map(a=>(
-                          <span key={a.number} className="w-5 h-5 rounded-full bg-white border text-[10px] grid place-items-center">{a.symbol.slice(0,2)}</span>
-                        ))}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                      <div className="absolute top-3 left-3 flex gap-2">
+                        <span className={`w-7 h-7 rounded-full grid place-items-center text-[12px] font-bold border ${exploredDone?'bg-[#0B6E4F] text-white border-[#0B6E4F]':'bg-white/90 text-[#2B2117] border-white'}`}>{b.id}</span>
+                        {exploredDone && <span className="px-2 py-1 rounded-full bg-[#0B6E4F] text-white text-[10px]">✓ Done</span>}
+                      </div>
+                      <div className="absolute bottom-0 left-0 right-0 p-3">
+                        <p className="font-serif font-bold text-white text-[15px] leading-tight drop-shadow">{b.hindiName}</p>
+                        <p className="text-[11px] text-white/80">{b.chaupaiRange} • {b.bhav}</p>
                       </div>
                     </div>
-                    <span className="self-center text-[#D4AF7A] group-hover:translate-x-1 transition">→</span>
+                    <div className="p-3 bg-[#FFFBF0]">
+                      <p className="text-[12px] font-semibold text-[#2B2117] truncate">{b.anchors[0].label} ... {b.anchors[4].label}</p>
+                      <p className="text-[11px] text-[#8A7352] mt-1">{b.theme.slice(0,42)}...</p>
+                    </div>
                   </button>
-                ))}
-              </div>
+                )
+              })}
             </div>
           </div>
 
