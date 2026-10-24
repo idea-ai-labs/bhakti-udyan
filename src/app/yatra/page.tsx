@@ -236,7 +236,7 @@ export default function YatraPage() {
                     <div className="mt-3 w-full h-[120px] rounded-[12px] overflow-hidden border border-[#F5E6C8] bg-[#2B2117]">
                       <img src={selectedAnchor.chaupaiImage} alt={`Chaupai ${selectedAnchor.number}`} className="w-full h-full object-cover" onError={(e)=>{(e.currentTarget as HTMLImageElement).style.display='none'}} />
                     </div>
-                    <p className="text-[10px] text-[#8A7352] mt-2">Scene: {selectedAnchor.chaupaiImage.split('/').pop()}</p>
+                    <p className="text-[10px] text-[#8A7352] mt-2">Scene • दृश्य</p>
                   </div>
                   <div className="mt-4 flex gap-2 w-full">
                     <button onClick={prevAnchor} disabled={selectedBagicha.anchors[0].number===selectedAnchor.number} className="flex-1 py-2 rounded-full bg-white border text-[12px] disabled:opacity-40">← Prev</button>
@@ -251,20 +251,22 @@ export default function YatraPage() {
                       <div>
                         <p className="text-[11px] tracking-[0.15em] uppercase text-[#8A7352]">Chaupai {selectedAnchor.number}</p>
                         <p className="font-serif text-[20px] md:text-[22px] leading-[1.5] mt-2 text-[#2B2117]">{selectedAnchor.chaupaiHindi}</p>
-                        <p className="text-[13px] text-[#8A7352] italic mt-2">{selectedAnchor.transliteration}</p>
+                        {showMeaning && <p className="text-[13px] text-[#8A7352] italic mt-2">{selectedAnchor.transliteration}</p>}
                       </div>
                       <div className="grid md:grid-cols-2 gap-4">
+                        {showMeaning && (
                         <div className="bg-[#FFFBF0] rounded-[14px] border border-[#F5E6C8] p-4">
                           <p className="text-[11px] uppercase tracking-widest text-[#8A7352]">Arth • Meaning</p>
                           <p className="mt-2 text-[14px] leading-relaxed">{lang==="hindi"?selectedAnchor.hindiMeaning:selectedAnchor.englishMeaning}</p>
                         </div>
-                        <div className="bg-[#0B6E4F]/[0.06] rounded-[14px] border border-[#0B6E4F]/15 p-4">
+                        )}
+                        <div className={`bg-[#0B6E4F]/[0.06] rounded-[14px] border border-[#0B6E4F]/15 p-4 ${!showMeaning?'md:col-span-2':''}`}>
                           <p className="text-[11px] uppercase tracking-widest text-[#0B6E4F]">Yaad Kaise Kare • Memory Connection</p>
                           <p className="mt-2 text-[13px] leading-relaxed text-[#2B2117]">{selectedAnchor.memoryConnection}</p>
                           <div className="mt-3 flex items-center gap-2 text-[11px] text-[#8A7352]"><span>{selectedAnchor.symbol}</span><span>→ {selectedAnchor.label} → Chaupai {selectedAnchor.number}</span></div>
                         </div>
                       </div>
-                      <label className="flex items-center gap-2 text-[12px] text-[#5A4A38] cursor-pointer"><input type="checkbox" checked={showMeaning} onChange={(e)=>setShowMeaning(e.target.checked)} /> Show transliteration & meaning</label>
+                      <label className="flex items-center gap-2 text-[12px] text-[#5A4A38] cursor-pointer select-none"><input type="checkbox" checked={showMeaning} onChange={(e)=>setShowMeaning(e.target.checked)} className="rounded" /> Show transliteration & meaning</label>
                     </div>
                   )}
 
@@ -289,7 +291,7 @@ export default function YatraPage() {
                       <h4 className="font-serif text-[18px] font-bold">Arrange • Kram lagao</h4>
                       <p className="text-[13px] text-[#5A4A38]">Tap anchors in correct order 1→5 for this Bagicha.</p>
                       <div className="flex gap-2 flex-wrap min-h-[44px] p-2 rounded-[12px] bg-[#FFF8EC] border border-dashed border-[#F5E6C8]">{reconstructOrder.map(n=>{ const a=selectedBagicha.anchors.find(x=>x.number===n); return <span key={n} className="px-2.5 py-1 rounded-full bg-[#0B6E4F] text-white text-[12px]">{a?.label}</span> })}{reconstructOrder.length===0 && <span className="text-[12px] text-[#8A7352]">Your order will appear here</span>}</div>
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">{reconstructShuffled.map(a=>{ const used=reconstructOrder.includes(a.number); return <button key={a.number} disabled={used} onClick={()=>{ if(!used){ const next=[...reconstructOrder,a.number]; setReconstructOrder(next); if(next.length===5){ if(next.join(',')===selectedBagicha.anchors.map(x=>x.number).join(',')){ setExploredBagiche(prev=>{ const n=new Set(prev); n.add(selectedBagicha.id); return n; }); } } } }} className={`p-3 rounded-[12px] border text-left text-[12px] ${used?'bg-[#F5F2ED] border-[#F5E6C8] opacity-50':'bg-white border-[#F5E6C8] hover:border-[#0B6E4F]'}`}>{a.label} <span className="text-[10px] text-[#8A7352]">#{a.number}</span></button> })}</div>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">{reconstructShuffled.map(a=>{ const used=reconstructOrder.includes(a.number); return <button key={a.number} disabled={used} onClick={()=>{ if(!used){ const next=[...reconstructOrder,a.number]; setReconstructOrder(next); if(next.length===5){ if(next.join(',')===selectedBagicha.anchors.map(x=>x.number).join(',')){ setExploredBagiche(prev=>{ const n=new Set(prev); n.add(selectedBagicha.id); return n; }); } } } }} className={`p-3 rounded-[12px] border text-left text-[12px] ${used?'bg-[#F5F2ED] border-[#F5E6C8] opacity-50':'bg-white border-[#F5E6C8] hover:border-[#0B6E4F]'}`}>{a.label}</button> })}</div>
                       <div className="flex gap-2"><button onClick={()=>setReconstructOrder([])} className="px-3 py-1.5 rounded-full bg-white border text-[12px]">Clear</button><button onClick={()=>{ setReconstructShuffled([...selectedBagicha.anchors].sort(()=>Math.random()-0.5)); setReconstructOrder([]); }} className="px-3 py-1.5 rounded-full bg-white border text-[12px]">Shuffle</button></div>
                       {reconstructOrder.length===5 && <p className={`text-[13px] font-medium ${reconstructOrder.join(',')===selectedBagicha.anchors.map(x=>x.number).join(',')?'text-[#0B6E4F]':'text-red-600'}`}>{reconstructOrder.join(',')===selectedBagicha.anchors.map(x=>x.number).join(',')?'✓ Correct kram! Bagicha completed.':'Kram galat hai, try again.'}</p>}
                     </div>
