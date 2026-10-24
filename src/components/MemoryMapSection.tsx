@@ -1,10 +1,12 @@
 'use client';
 import { useState } from 'react';
 import { BAGICHE_DATA } from '../data/udyanData';
+import { CHAUPI_DATA, Language } from '../data/chaupaiData';
 
 export default function MemoryMapSection() {
   const [activeId, setActiveId] = useState(1);
   const active: any = (BAGICHE_DATA as any[]).find((b: any) => b.id === activeId) || (BAGICHE_DATA as any[])[0];
+  const [lang, setLang] = useState<Language>("hindi");
 
   const getAnchorText = (anchor: any): string => {
     if (typeof anchor === 'string') return anchor;
@@ -28,6 +30,7 @@ export default function MemoryMapSection() {
     return `/bagicha/${map[b.id] || map[1]}`;
   };
 
+  const getChaupai = (num: number) => CHAUPI_DATA.find(c => c.number === num);
   return (
     <section id="memory-map" className="relative py-24 px-6 bg-[#0B6E4F] text-[#FFFBF0] overflow-hidden">
       <div className="pointer-events-none absolute inset-0 opacity-[0.05] bg-[radial-gradient(circle_at_20%_20%,#fff_1px,transparent_1px)] bg-[size:22px_22px]" />
@@ -71,14 +74,33 @@ export default function MemoryMapSection() {
                 </div>
               </div>
               <div className="p-6">
-                <div className="text-[11px] tracking-[0.2em] uppercase text-[#8A7352]">Memory Anchors</div>
+                <div className="flex items-center justify-between">
+                  <div className="text- tracking-[0.2em] uppercase text-[#8A7352]">Memory Anchors</div>
+                  <button
+                    onClick={() => setLang(lang === "hindi" ? "english" : "hindi")}
+                    className="px-3 py-1 rounded-full bg-[#0B6E4F]/10 border border-[#0B6E4F]/20 text- font-bold text-[#0B6E4F]"
+                  >
+                    {lang === "hindi" ? "ENGLISH" : "हिंदी"}
+                  </button>
+                </div>
                 <div className="mt-3 space-y-2">
-                  {(active.memoryAnchors || []).map((ma: any, i: number) => (
-                    <div key={i} className="flex gap-3 items-start">
-                      <span className="mt-0.5 w-6 h-6 shrink-0 rounded-full bg-[#0B6E4F] text-white flex items-center justify-center text-[11px] font-bold">{i+1}</span>
-                      <span className="text-[13px] leading-[1.5] text-[#5A4A38]">{getAnchorText(ma)}</span>
-                    </div>
-                  ))}
+                  {(active.memoryAnchors || []).map((ma: any, i: number) => {
+                    const chaupaiNum = (active.id - 1) * 5 + i + 1;
+                    const chaupai = getChaupai(chaupaiNum);
+                    return (
+                      <div key={i} className="flex gap-3 items-start">
+                        <span className="mt-0.5 w-6 h-6 shrink-0 rounded-full bg-[#0B6E4F] text-white flex items-center justify-center text- font-bold">{chaupaiNum}</span>
+                        <div className="flex-1">
+                          <span className="text- leading-[1.5] text-[#5A4A38]">{getAnchorText(ma)}</span>
+                          {chaupai && (
+                            <div className="mt-2 rounded- bg-[#FFF8EC] border border-[#F2E6D3] px-3 py-2 text- leading-[1.6] text-[#2B2117]">
+                              {lang === "hindi" ? chaupai.hindi : chaupai.transliteration}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
                 <div className="mt-6 h-px bg-[#F2E6D3]" />
                 <div className="mt-4 text-[11px] tracking-[0.18em] uppercase text-[#0B6E4F] font-semibold">Understand → Feel → Remember → Live</div>
