@@ -1,16 +1,18 @@
 'use client';
 import { useState } from 'react';
 import { BAGICHE_DATA } from '../data/udyanData';
-import { CHAUPI_DATA, Language, Chaupai } from '../data/chaupaiData';
+import { CHAUPI_DATA, Language } from '../data/chaupaiData';
 
 export default function MemoryMapSection() {
   const [activeId, setActiveId] = useState(1);
   const [lang, setLang] = useState<Language>("hindi");
-  
-  const active: any = BAGICHE_DATA.find((b: any) => b.id === activeId) || BAGICHE_DATA[0];
+  const active: any = (BAGICHE_DATA as any[]).find((b: any) => b.id === activeId) || (BAGICHE_DATA as any[])[0];
 
-  const getChaupai = (num: number): Chaupai | undefined => {
-    return CHAUPI_DATA.find(c => c.number === num);
+  const getAnchorText = (anchor: any): string => {
+    if (typeof anchor === 'string') return anchor;
+    if (anchor?.label) return `Chaupai ${anchor.chaupaiNumber || ''} — ${anchor.label}`.trim();
+    if (anchor?.text) return anchor.text;
+    return JSON.stringify(anchor).slice(0, 80);
   };
 
   const getImage = (b: any) => {
@@ -27,29 +29,20 @@ export default function MemoryMapSection() {
     return `/bagicha/${map[b.id] || map[1]}`;
   };
 
+  const getChaupai = (num: number) => CHAUPI_DATA.find(c => c.number === num);
+
   return (
     <section id="memory-map" className="relative py-24 px-6 bg-[#0B6E4F] text-[#FFFBF0] overflow-hidden">
       <div className="pointer-events-none absolute inset-0 opacity-[0.05] bg-[radial-gradient(circle_at_20%_20%,#fff_1px,transparent_1px)] bg-[size:22px_22px]" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row gap-12 items-start">
-          {/* LEFT */}
           <div className="flex-1">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex px-3 py-1 rounded-full bg-white/10 border border-white/20 text- tracking-[0.2em] uppercase">Memory Map</span>
-              <button
-                onClick={() => setLang(lang === "hindi" ? "english" : "hindi")}
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFFBF0] text-[#0B6E4F] text- font-bold hover:bg-white transition-colors"
-              >
-                <span className="w-4 h-4 rounded-full bg-[#0B6E4F] text-white flex items-center justify-center text-">अ</span>
-                {lang === "hindi" ? "Show English" : "हिंदी में दिखाएँ"}
-              </button>
-            </div>
-
+            <span className="inline-flex px-3 py-1 rounded-full bg-white/10 border border-white/20 text- tracking-[0.2em] uppercase">Memory Map</span>
             <h2 className="mt-6 font-serif text- md:text- leading-[0.9]">How We Remember</h2>
             <p className="mt-4 text- leading-[1.6] text-[#C9E8DC] max-w-">Each Bagicha is a room in memory. No rote memorization — story, image, and emotion.</p>
             
             <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {BAGICHE_DATA.map((b: any) => (
+              {(BAGICHE_DATA as any[]).map((b: any) => (
                 <button
                   key={b.id}
                   onClick={() => setActiveId(b.id)}
@@ -71,62 +64,44 @@ export default function MemoryMapSection() {
             </div>
           </div>
 
-          {/* RIGHT - Stitched with Chaupai */}
           <div className="flex-1 w-full">
             <div className="rounded- bg-[#FFFBF0] text-[#2B2117] border border-white/20 overflow-hidden shadow-[0_20px_80px_-20px_rgba(0,0,0,0.5)]">
               <div className="h- relative overflow-hidden bg-[#FFF2E0]">
-                <img 
-                  src={getImage(active)} 
-                  alt={active.title || 'Bagicha'} 
-                  className={`w-full h-full ${active.id === 2 ? 'object-cover object-top' : 'object-cover object-[center_20%]'}`}
-                />
+                <img src={getImage(active)} alt={active.title || 'Bagicha'} className={`w-full h-full ${active.id === 2 ? 'object-cover object-top' : 'object-cover object-[center_20%]'}`} />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-4 left-5 right-5">
-                  <div className="inline-flex px-3 py-1 rounded-full bg-[#0B6E4F] text-white text-">
-                    {active.chaupaiRange} · {active.hindiName}
-                  </div>
+                  <div className="inline-flex px-3 py-1 rounded-full bg-[#0B6E4F] text-white text-">{active.chaupaiRange} · {active.hindiName}</div>
                 </div>
               </div>
-              
               <div className="p-6">
                 <div className="flex items-center justify-between">
-                  <div className="text- tracking-[0.2em] uppercase text-[#8A7352]">Memory Anchors — {active.chaupaiRange}</div>
+                  <div className="text- tracking-[0.2em] uppercase text-[#8A7352]">Memory Anchors</div>
                   <button
                     onClick={() => setLang(lang === "hindi" ? "english" : "hindi")}
-                    className="text- px-2.5 py-1 rounded-full bg-[#0B6E4F]/10 text-[#0B6E4F] font-bold hover:bg-[#0B6E4F]/20 transition-colors"
+                    className="px-2.5 py-1 rounded-full bg-[#0B6E4F]/10 text-[#0B6E4F] text- font-bold"
                   >
                     {lang === "hindi" ? "EN" : "हि"}
                   </button>
                 </div>
-
-                <div className="mt-4 space-y-4">
+                <div className="mt-3 space-y-3">
                   {(active.memoryAnchors || []).map((ma: any, i: number) => {
-                    const chaupaiNum = (active.id - 1) * 5 + i + 1;
-                    const chaupai = getChaupai(chaupaiNum);
+                    const num = (active.id - 1) * 5 + i + 1;
+                    const chaupai = getChaupai(num);
                     return (
-                      <div key={i} className="group">
-                        <div className="flex gap-3 items-start">
-                          <span className="mt-0.5 w-6 h-6 shrink-0 rounded-full bg-[#0B6E4F] text-white flex items-center justify-center text- font-bold">
-                            {chaupaiNum}
-                          </span>
-                          <div className="flex-1">
-                            <div className="text- font-semibold leading-[1.4] text-[#2B2117]">
-                              {typeof ma === 'string' && ma.includes("—") ? ma.split("—")[1].trim() : chaupai?.anchorLabel}
+                      <div key={i} className="flex gap-3 items-start">
+                        <span className="mt-0.5 w-6 h-6 shrink-0 rounded-full bg-[#0B6E4F] text-white flex items-center justify-center text- font-bold">{num}</span>
+                        <div className="flex-1">
+                          <span className="text- leading-[1.5] text-[#5A4A38]">{getAnchorText(ma)}</span>
+                          {chaupai && (
+                            <div className="mt-1.5 text-[12.5px] leading-[1.6] text-[#2B2117]/80 bg-[#FFF8EC] border border-[#F2E6D3] rounded- px-3 py-2">
+                              {lang === "hindi" ? chaupai.hindi : chaupai.transliteration}
                             </div>
-                            {chaupai && (
-                              <div className="mt-1.5 p-2.5 rounded- bg-[#FFF8EC] border border-[#F2E6D3]">
-                                <p className={`text- leading-[1.6] ${lang === "hindi" ? "font-serif text-[#3D2F1F]" : "font-sans text-[#5A4A38] italic"}`}>
-                                  {lang === "hindi" ? chaupai.hindi : chaupai.transliteration}
-                                </p>
-                              </div>
-                            )}
-                          </div>
+                          )}
                         </div>
                       </div>
                     );
                   })}
                 </div>
-
                 <div className="mt-6 h-px bg-[#F2E6D3]" />
                 <div className="mt-4 text- tracking-[0.18em] uppercase text-[#0B6E4F] font-semibold">Understand → Feel → Remember → Live</div>
               </div>
