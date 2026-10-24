@@ -10,8 +10,9 @@ export default function MemoryMapSection() {
 
   const getAnchorText = (anchor: any): string => {
     if (typeof anchor === 'string') return anchor;
-    if (anchor?.label) return `Chaupai ${anchor.chaupaiNumber || ''} — ${anchor.label}`.trim();
     if (anchor?.text) return anchor.text;
+    if (anchor?.title) return anchor.title;
+    if (anchor?.name) return anchor.name;
     return JSON.stringify(anchor).slice(0, 80);
   };
 
@@ -67,7 +68,7 @@ export default function MemoryMapSection() {
           <div className="flex-1 w-full">
             <div className="rounded- bg-[#FFFBF0] text-[#2B2117] border border-white/20 overflow-hidden shadow-[0_20px_80px_-20px_rgba(0,0,0,0.5)]">
               <div className="h- relative overflow-hidden bg-[#FFF2E0]">
-                <img src={getImage(active)} alt={active.title || 'Bagicha'} className={`w-full h-full ${active.id === 2 ? 'object-cover object-top' : 'object-cover object-[center_20%]'}`} />
+                <img src={getImage(active)} alt={active.title || 'Bagicha'} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-4 left-5 right-5">
                   <div className="inline-flex px-3 py-1 rounded-full bg-[#0B6E4F] text-white text-">{active.chaupaiRange} · {active.hindiName}</div>
@@ -78,23 +79,25 @@ export default function MemoryMapSection() {
                   <div className="text- tracking-[0.2em] uppercase text-[#8A7352]">Memory Anchors</div>
                   <button
                     onClick={() => setLang(lang === "hindi" ? "english" : "hindi")}
-                    className="px-2.5 py-1 rounded-full bg-[#0B6E4F]/10 text-[#0B6E4F] text- font-bold"
+                    className="inline-flex items-center px-3 py-1 rounded-full bg-[#0B6E4F]/10 border border-[#0B6E4F]/20 text- font-bold tracking-wide text-[#0B6E4F] hover:bg-[#0B6E4F]/15 transition-colors"
                   >
-                    {lang === "hindi" ? "EN" : "हि"}
+                    {lang === "hindi" ? "ENGLISH" : "हिंदी"}
                   </button>
                 </div>
                 <div className="mt-3 space-y-3">
                   {(active.memoryAnchors || []).map((ma: any, i: number) => {
-                    const num = (active.id - 1) * 5 + i + 1;
-                    const chaupai = getChaupai(num);
+                    const chaupaiNum = (active.id - 1) * 5 + i + 1;
+                    const chaupai = getChaupai(chaupaiNum);
                     return (
                       <div key={i} className="flex gap-3 items-start">
-                        <span className="mt-0.5 w-6 h-6 shrink-0 rounded-full bg-[#0B6E4F] text-white flex items-center justify-center text- font-bold">{num}</span>
+                        <span className="mt-0.5 w-6 h-6 shrink-0 rounded-full bg-[#0B6E4F] text-white flex items-center justify-center text- font-bold">{chaupaiNum}</span>
                         <div className="flex-1">
-                          <span className="text- leading-[1.5] text-[#5A4A38]">{getAnchorText(ma)}</span>
+                          <div className="text- leading-[1.5] text-[#5A4A38]">{getAnchorText(ma)}</div>
                           {chaupai && (
-                            <div className="mt-1.5 text-[12.5px] leading-[1.6] text-[#2B2117]/80 bg-[#FFF8EC] border border-[#F2E6D3] rounded- px-3 py-2">
-                              {lang === "hindi" ? chaupai.hindi : chaupai.transliteration}
+                            <div className="mt-2 rounded- bg-[#FFF8EC] border border-[#F2E6D3] px-3 py-2">
+                              <div className={`text- leading-[1.6] ${lang === "hindi" ? "font-serif text-[#2B2117]" : "text-[#5A4A38] italic"}`}>
+                                {lang === "hindi" ? chaupai.hindi : chaupai.transliteration}
+                              </div>
                             </div>
                           )}
                         </div>
