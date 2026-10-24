@@ -251,17 +251,22 @@ export default function YatraPage() {
                     <div className="mt-2 text-[10px] text-[#8A7352]">Missing: {selectedAnchor.chaupaiImage}</div>
                   </div>
                 </div>
-                <div className="absolute top-4 left-4 w-14 h-14 rounded-[14px] bg-white border shadow overflow-hidden grid place-items-center">
+                <div className="absolute top-4 left-4 w-24 h-24 md:w-28 md:h-28 rounded-[20px] bg-white border-2 border-[#F5E6C8] shadow-[0_4px_20px_rgba(0,0,0,0.1)] overflow-hidden">
                   <img
                     src={selectedAnchor.anchorImage}
                     alt={selectedAnchor.label}
                     className="w-full h-full object-cover"
                     loading="lazy"
                     onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display = 'none';
+                      const img = e.currentTarget as HTMLImageElement;
+                      img.style.display = 'none';
+                      const fallback = img.parentElement?.querySelector('.anchor-fallback') as HTMLElement;
+                      if (fallback) fallback.style.display = 'grid';
                     }}
                   />
-                  <span className="absolute inset-0 grid place-items-center text-[20px] bg-white/60">{selectedAnchor.symbol}</span>
+                  <div className="anchor-fallback hidden absolute inset-0 place-items-center bg-[#FFFBF0] text-[36px]">
+                    {selectedAnchor.symbol}
+                  </div>
                 </div>
                 <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[#0B6E4F] text-white text-[11px]">{selectedAnchor.label}</div>
               </div>
