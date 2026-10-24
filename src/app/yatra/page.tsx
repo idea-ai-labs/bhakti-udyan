@@ -126,7 +126,7 @@ export default function YatraPage() {
                   }
                 }} className="px-3 py-1 rounded-full bg-white border border-[#F5E6C8] text-[11px] hover:border-red-300">Reset</button>
                 <button onClick={()=>setLang(lang==="hindi"?"english":"hindi")} className="px-3 py-1 rounded-full bg-white border border-[#F5E6C8] text-[11px]">{lang==="hindi"?"EN":"हि"}</button>
-                <span className="text-[11px] text-[#8A7352]">{totalAnchorsVisited}/40 • {progress}/8</span>
+                <span className="text-[11px] text-[#8A7352]">Progress: Bagiche {progress}/8, Chaupai {totalAnchorsVisited}/40</span>
               </div>
             </div>
           </div>
